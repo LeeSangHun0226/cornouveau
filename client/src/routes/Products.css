@@ -1,0 +1,16 @@
+.imgBox {
+  width: 50%;
+  float: left;
+
+}
+
+@media screen and (max-width: 700px) {
+  .imgBox {
+    width: 100%;
+  }
+}
+
+.productText {
+  font-size: 15px;
+  text-align: center;
+}

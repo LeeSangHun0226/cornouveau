@@ -1,0 +1,42 @@
+.modal-content {
+  background-color: transparent;
+}
+
+.modal-body-text {
+  font-size: 20px;
+  color: white
+}
+
+.moadal-footer {
+  padding-bottom: 30rem
+}
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+
+.modal-body {
+  width: 60%;
+}
+
+.modal-body-mobile {
+  width: 100%;
+}
+
+.Modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: black;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+}

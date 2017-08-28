@@ -1,0 +1,29 @@
+.product-imgBox {
+  width: 50%;
+  float: left;
+}
+
+@media screen and (max-width: 700px) {
+  .product-imgBox {
+    width: 100%;
+  }
+}
+
+
+.product-text-container {
+  margin-top: 50px;
+  font-size: 15px;
+  text-align: left;
+}
+
+
+.product-text {
+  margin-top: 10px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.product-payment-wrapper {
+  width: 50%;
+  float: left;
+}
