@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
 import axios from 'axios';
-import Payment from '../components/Payment/Payment';
 import './Product.css';
 
 class Product extends Component {
 
   state = {
-    data: [],
+    productData: [],
+    productSize: 'mini',
+    productQty: '1',
   }
 
   componentDidMount() {
@@ -15,14 +16,83 @@ class Product extends Component {
     axios.get(`http://localhost:4000/api/product/${productname}`)
       .then((res) => {
         this.setState({
-          data: res.data,
+          productData: res.data,
         });
       });
   }
 
+  handleSizeChange = (event) => {
+    this.setState({
+      productSize: event.target.value,
+    });
+  }
+
+  handleQtyChange = (event) => {
+    this.setState({
+      productQty: event.target.value,
+    });
+  }
+
+  handleSubmit = (event) => {
+    this.props.history.push({
+      pathname: '/payment',
+      state: {
+        productData: this.state.productData,
+        productSize: this.state.productSize,
+        productQty: this.state.productQty,
+      },
+    });
+    event.preventDefault();
+  }
+
+
   renderPaymentBox = () => {
-    if (this.state.data.length > 0) {
-      const { titlePhoto, name } = this.state.data[0];
+    if (this.state.productData.length > 0) {
+      const productData = this.state.productData[0];
+      return (
+        <div className="product-payment-wrapper">
+          <h2>
+            {productData.name}
+          </h2>
+          <h3>
+            {productData.price}
+          </h3>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              SIZE:
+              <select value={this.state.productSize} onChange={this.handleSizeChange}>
+                <option value="mini">MINI</option>
+                <option value="small">SMALL</option>
+                <option value="medium">MEDIUM</option>
+              </select>
+            </label>
+            <div />
+            <label>
+              QTY:
+              <select value={this.state.productQty} onChange={this.handleQtyChange}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </label>
+            <div />
+            <input type="submit" value="BUY NOW" />
+          </form>
+        </div>
+      );
+    }
+  }
+
+  renderProductBox = () => {
+    if (this.state.productData.length > 0) {
+      const { titlePhoto, name } = this.state.productData[0];
       return (
         <div className="product-imgBox">
           <Image
@@ -38,8 +108,8 @@ class Product extends Component {
   }
 
   renderDetailBox = () => {
-    if (this.state.data.length > 0) {
-      return this.state.data[0].description.map(product => (
+    if (this.state.productData.length > 0) {
+      return this.state.productData[0].description.map(product => (
           <div className="product-imgBox">
             <Image
               src={`${product.photo}`}
@@ -61,8 +131,8 @@ class Product extends Component {
   render() {
     return (
       <div>
-        <Payment history={this.props.history} data={this.state.data} />
         {this.renderPaymentBox()}
+        {this.renderProductBox()}
         {this.renderDetailBox()}
       </div>
     );

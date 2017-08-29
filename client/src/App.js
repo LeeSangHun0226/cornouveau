@@ -14,6 +14,7 @@ import Adoption from './routes/Adoption';
 import Products from './routes/Products';
 import Product from './routes/Product';
 import Payment from './routes/Payment';
+import Complete from './routes/Complete';
 import Cornouveau from './routes/Cornouveau';
 import Sire from './routes/Sire';
 import Italian from './routes/Italian';
@@ -51,7 +52,8 @@ const App = () => (
               <Route path="/products" component={Products} />
               <Route path="/product/:productname" component={Product} />
 
-              <Route path="/payment" component={Payment} />
+              <Route exact path="/payment" component={Payment} />
+              <Route path="/payment/complete" component={Complete} />
             </Switch>
           </div>
         </div>

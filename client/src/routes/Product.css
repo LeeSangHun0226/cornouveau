@@ -9,6 +9,11 @@
   }
 }
 
+.product-payment-wrapper {
+  width: 50%;
+  text-align: center;
+  float: left;
+}
 
 .product-text-container {
   margin-top: 50px;

@@ -1,0 +1,51 @@
+.Payment-renderField-wrapper {
+  width: 100%;
+  height: 60px;
+  text-align: right;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+.Payment-renderField-label-wrapper {
+  width: 20%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  text-align: right;
+}
+
+.Payment-renderField-label {
+  width: 100%;
+}
+
+.Payment-renderField-input {
+  border: 1px solid aquamarine;
+  height: 80%;
+  width: 70%;
+  margin-right: 20px;
+}
+
+.Payment-renderField-input-postcode {
+  height: 80%;
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 20px;
+}
+
+.Payment-renderField-button-postcode {
+  outline: none;
+}
+
+.Payment-info {
+  width: 100%;
+  padding-left: 20px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  background-color: grey;
+}
