@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
 }
 
 .Payment-renderField-label-wrapper {
@@ -19,10 +18,11 @@
 
 .Payment-renderField-label {
   width: 100%;
+  font-size: 10px;
 }
 
 .Payment-renderField-input {
-  border: 1px solid aquamarine;
+  border: 1px solid grey;
   height: 80%;
   width: 70%;
   margin-right: 20px;
@@ -46,6 +46,6 @@
   height: 40px;
   display: flex;
   align-items: center;
-  margin-top: 20px;
-  background-color: grey;
+  background-color: black;
+  color: white;
 }

@@ -1,5 +1,5 @@
 .ProductDetail-wrapper {
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -18,16 +18,13 @@
 }
 
 .ProductDetail-content-name {
-  font-size: 20px;
   flex-direction: row;
 }
 
 .ProductDetail-content-size {
-  font-size: 20px;
   flex-direction: row;
 }
 
 .ProductDetail-content-qty {
-  font-size: 20px;
   flex-direction: row;
 }

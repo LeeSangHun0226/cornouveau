@@ -3,16 +3,22 @@
   float: left;
 }
 
+.product-imgBox-detail {
+  width: 100%;
+}
+
 @media screen and (max-width: 700px) {
   .product-imgBox {
-    width: 100%;
+    width: 50%;
   }
 }
 
 .product-payment-wrapper {
   width: 50%;
+
   text-align: center;
   float: left;
+  background: rgb(230,230,230);
 }
 
 .product-text-container {

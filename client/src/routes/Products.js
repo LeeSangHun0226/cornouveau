@@ -12,7 +12,7 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/api/product')
+    axios.get('http://13.124.112.126:4000/api/product')
       .then((res) => { 
         this.setState({
           data: res.data,
@@ -22,13 +22,15 @@ class Products extends Component {
 
   renderBox = () => (
     this.state.data.map(product => (
-      <div className="imgBox">
-        <Link to={`/product/${product._id}`}>
-          <Image
-            src={`${product.titlePhoto}`}
-            responsive
-          />
-        </Link>
+      <div className="col-md-6">
+        <div>
+          <Link to={`/product/${product._id}`}>
+            <Image
+              src={`${product.titlePhoto}`}
+              responsive
+            />
+          </Link>
+        </div>
         <div className="productText">
           {product.name} <br />
           {product.price}
@@ -39,7 +41,7 @@ class Products extends Component {
 
   render() {
     return (
-      <div>
+      <div className="row">
         {this.renderBox()}
       </div>
     );

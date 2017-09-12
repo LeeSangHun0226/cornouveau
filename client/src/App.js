@@ -18,10 +18,12 @@ import Complete from './routes/Complete';
 import Cornouveau from './routes/Cornouveau';
 import Sire from './routes/Sire';
 import Italian from './routes/Italian';
+import News from './routes/News';
 import Dams from './routes/Dams';
 import Dam from './routes/Dam';
 
 import Header from './components/Header';
+import Footer from './components/Footer/Footer';
 
 const store = createStore(rootReducer);
 
@@ -29,7 +31,7 @@ const App = () => (
   <MuiThemeProvider>
     <Provider store={store}>
       <Router>
-        <div>
+        <div style={{ minHeight: '100%', position: 'relative' }}>
           <Header />
           <div>
             <Switch>
@@ -37,25 +39,26 @@ const App = () => (
               <Route exact path="/about" component={Cornouveau} />
               <Route path="/about/cornouveau" component={Cornouveau} />
               <Route path="/about/italian" component={Italian} />
+              <Route path="/about/news" component={News} />
 
               <Route path="/campaign" component={Campaign} />
               <Route path="/gallery" component={GalleryComponent} />
 
               <Route exact path="/ourdog" component={Sire} />
               <Route path="/ourdog/sire" component={Sire} />
-              <Route path="/ourdog/dam" component={Dams} />
-              <Route path="/ourdog/:damName" component={Dam} />
+              <Route path="/ourdog/dam" component={Dam} />
 
               <Route path="/adoptions" component={Adoptions} />
               <Route path="/adoption/:adoptionName" component={Adoption} />
 
-              <Route path="/products" component={Products} />
+              <Route exact path="/products" component={Products} />
               <Route path="/product/:productname" component={Product} />
 
               <Route exact path="/payment" component={Payment} />
               <Route path="/payment/complete" component={Complete} />
             </Switch>
           </div>
+          <Footer />
         </div>
       </Router>
     </Provider>

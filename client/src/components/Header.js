@@ -50,10 +50,12 @@ export default class Header extends ResponsiveFactor {
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-           <Image
-             className="navbar-logo"
-             src={logo}
-           />
+            <LinkContainer to="/">
+              <Image
+                className="navbar-logo"
+                src={logo}
+              />
+            </LinkContainer>
           </Navbar.Brand>
            <Navbar.Toggle />
         </Navbar.Header>
@@ -65,6 +67,9 @@ export default class Header extends ResponsiveFactor {
               </LinkContainer>
               <LinkContainer to="/about/italian">
                 <MenuItem eventKey={1.2}>Italian Greyhounds</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/about/news">
+                <MenuItem eventKey={1.3}>News</MenuItem>
               </LinkContainer>
             </NavDropdown>
             <LinkContainer to="/campaign">

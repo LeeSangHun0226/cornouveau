@@ -1,5 +1,5 @@
 import React from 'react';
-import { Thumbnail } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import './ProductDetail.css';
 
 const ProductDetail = (props) => {
@@ -7,7 +7,10 @@ const ProductDetail = (props) => {
     return (
       <div className="ProductDetail-wrapper">
         <div className="ProductDetail-thumbnail">
-          <Thumbnail src={`${productData[0].titlePhoto}`} />
+          <Image
+            src={`${productData[0].titlePhoto}`}
+            responsive
+          />
         </div>
         <div className="ProductDetail-content-wrapper">
           <div className="ProductDetail-content-name">

@@ -7,7 +7,7 @@ import ProductDetail from '../components/Payment/ProductDetail';
 import './Payment.css';
 
 const IMP = window.IMP; // 생략가능
-IMP.init('imp67149342'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+IMP.init('imp18720821'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
 class Payment extends Component {
 
@@ -50,7 +50,7 @@ class Payment extends Component {
 
   isPaid = (data) => {
     IMP.request_pay({
-      pg: 'html5_inicis', // version 1.1.0부터 지원.
+      pg: 'nice', // version 1.1.0부터 지원.
       pay_method: `${data.paymentMethod}`,
       merchant_uid: 'merchant_' + new Date().getTime(),
       name: `${this.props.location.state.productData[0].name}`,
@@ -138,7 +138,7 @@ class Payment extends Component {
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <div>
+      <div style={{ paddingBottom: '100px' }}>
         <ProductDetail
           product={this.state.productData === '' ? this.props.location.state : this.state.productData}
         />
@@ -146,8 +146,8 @@ class Payment extends Component {
           주문자 정보
         </div>
         <form onSubmit={handleSubmit(this.handleSubmit)}>
-          <Field name="userName" type="text" component={this.renderField} label="주문자" />
-          <Field name="userPhone" type="text" component={this.renderField} label="주문자 번호" />
+          <Field name="userName" type="text" component={this.renderField} label="주문자(??????)" />
+          <Field name="userPhone" type="text" component={this.renderField} label="주문자 연락처" />
           <Field name="userEmail" type="email" component={this.renderField} label="주문자 메일" />
           <div className="Payment-info">
           배송지 정보

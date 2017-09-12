@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import italian1 from '../images/italian1.jpg';
-import italian2 from '../images/italian2.jpg';
-import italian3 from '../images/italian3.jpg';
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 
 
 class Italian extends Component {
   handleImageLoad(event) {
-    console.log('Image loaded ', event.target);
+    // console.log('Image loaded ', event.target);
   }
 
   renderPlayPauseButton(onClick, isPlaying) {
@@ -22,31 +19,55 @@ class Italian extends Component {
     );
   }
 
+  renderLeftNav(onClick, disabled) {
+    return (
+      <button
+        className='image-gallery-custom-left-nav'
+        disabled={disabled}
+        onClick={onClick}
+      />
+    );
+  }
+
   render() {
     const images = [
       {
-        original: `${italian1}`,
-        thumbnail: `${italian1}`,
+        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0001.jpg',
+        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0001.jpg',
       },
       {
-        original: `${italian2}`,
-        thumbnail: `${italian2}`,
+        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0002.jpg',
+        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0002.jpg',
       },
       {
-        original: `${italian3}`,
-        thumbnail: `${italian3}`,
+        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0003.jpg',
+        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0003.jpg',
       },
-    ]
+      {
+        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0004.jpg',
+        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0004.jpg',
+      },
+      {
+        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0005.jpg',
+        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0005.jpg',
+      },
+      {
+        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0006.jpg',
+        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/2.italaingreyhound/0006.jpg',
+      },
+    ];
 
     return (
       <ImageGallery
-          showBullets
-          renderPlayPauseButton={this.renderPlayPauseButton}
-          thumbnailPosition="top"
-          lazyLoad={false}
-          items={images}
-          slideInterval={2000}
-          onImageLoad={this.handleImageLoad}
+        // showBullets
+        renderPlayPauseButton={this.renderPlayPauseButton}
+        // thumbnailPosition="top"
+        lazyLoad={false}
+        items={images}
+        slideInterval={2000}
+        onImageLoad={this.handleImageLoad}
+        showPlayButton={false}
+        showFullscreenButton={false}
       />
   )
     //   <div style={{ width: '100%', height: '80%' }}>

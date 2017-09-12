@@ -2,13 +2,42 @@ import React from 'react';
 import { Image } from 'react-bootstrap';
 import home from '../images/home.jpg';
 
+const homeData = [
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/1.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/3.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/4.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/5.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/6.jpg',
+  },
+];
+
+const renderHome = () => (
+  homeData.map(data => (
+    <div>
+      <Image
+        src={data.image}
+        responsive
+      />
+    </div>
+   ))
+);
+
 const Home = () => {
   return (
     <div>
-      <Image
-        src={home}
-        responsive
-      />
+      {renderHome()}
     </div>
   );
 };

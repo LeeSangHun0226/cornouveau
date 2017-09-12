@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
 import axios from 'axios';
+import priceImg from '../images/price.jpeg';
 import './Product.css';
 
 class Product extends Component {
@@ -13,7 +14,7 @@ class Product extends Component {
 
   componentDidMount() {
     const { productname } = this.props.match.params;
-    axios.get(`http://localhost:4000/api/product/${productname}`)
+    axios.get(`http://13.124.112.126:4000/api/product/${productname}`)
       .then((res) => {
         this.setState({
           productData: res.data,
@@ -82,6 +83,10 @@ class Product extends Component {
                 <option value="10">10</option>
               </select>
             </label>
+            <Image
+              src={priceImg}
+              responsive
+            />
             <div />
             <input type="submit" value="BUY NOW" />
           </form>
@@ -99,9 +104,6 @@ class Product extends Component {
             src={`${titlePhoto}`}
             responsive
           />
-          <div className="product-text-container">
-            <p className="product-text">{name}</p>,
-          </div>
         </div>
       );
     }
@@ -110,11 +112,12 @@ class Product extends Component {
   renderDetailBox = () => {
     if (this.state.productData.length > 0) {
       return this.state.productData[0].description.map(product => (
-          <div className="product-imgBox">
+          <div className="product-imgBox-detail">
             <Image
               src={`${product.photo}`}
               responsive
             />
+            {/*
             <div className="product-text-container">
               {
                 product.text.split('<br/>').map(text =>
@@ -122,6 +125,7 @@ class Product extends Component {
                 )
               }
             </div>
+            */}
           </div>
       ));
     }
@@ -130,9 +134,9 @@ class Product extends Component {
 
   render() {
     return (
-      <div>
-        {this.renderPaymentBox()}
+      <div style={{ background: 'rgb(230,230,230)' }}>
         {this.renderProductBox()}
+        {this.renderPaymentBox()}
         {this.renderDetailBox()}
       </div>
     );
