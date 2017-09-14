@@ -3,12 +3,14 @@ const express = require('express');
 const ProductController = require('./controllers/product');
 const SireController = require('./controllers/sire');
 const DamController = require('./controllers/dam');
+const GalleryController = require('./controllers/gallery');
 
 module.exports = function (app) {
   const apiRoutes = express.Router();
   const productRoutes = express.Router();
   const sireRoutes = express.Router();
   const damRoutes = express.Router();
+  const galleryRoutes = express.Router();
   /*------------------------------------------------------------------------------
     PRODUCT ROUTE
   ------------------------------------------------------------------------------*/
@@ -29,6 +31,11 @@ module.exports = function (app) {
   damRoutes.get('/', DamController.allDamGet);
   damRoutes.get('/:damname', DamController.oneDamGet);
   damRoutes.post('/', DamController.saveDam);
+
+  apiRoutes.use('/gallery', galleryRoutes);
+  galleryRoutes.get('/', GalleryController.allGalleryGet);
+  galleryRoutes.get('/:galleryname', GalleryController.oneGalleryGet);
+  galleryRoutes.post('/', GalleryController.saveGallery);
 
   app.use('/api', apiRoutes);
 };

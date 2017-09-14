@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 import Modal from 'react-modal';
 
@@ -52,11 +53,12 @@ class GalleryComponent extends Component {
       <div>
       <div style={{ }}>
           <div style={{ float: 'left', width: 'calc(100% / 3 * 2)' }}>
-            <Image
-              src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/1.jpg'
-              responsive
-              onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/1.jpg')}
-              />
+            <Link to={`/ourdog/Dam/${data._id}`}>
+              <Image
+                src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/1.jpg'
+                responsive
+                />
+            </Link>
           </div>
           <div style={{ float: 'left', width: 'calc(100% / 3)' }}>
             <Image

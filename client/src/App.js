@@ -9,6 +9,7 @@ import rootReducer from './store';
 import Home from './routes/Home';
 import Campaign from './routes/Campaign';
 import GalleryComponent from './routes/Gallery';
+import GalleryDetail from './routes/GalleryDetail';
 import Adoptions from './routes/Adoptions';
 import Adoption from './routes/Adoption';
 import Products from './routes/Products';
@@ -43,7 +44,9 @@ const App = () => (
               <Route path="/about/news" component={News} />
 
               <Route path="/campaign" component={Campaign} />
-              <Route path="/gallery" component={GalleryComponent} />
+              
+              <Route exact path="/gallery" component={GalleryComponent} />
+              <Route path="/gallery/:galleryname" component={GalleryDetail} />
 
               <Route exact path="/ourdog/sire" component={Sire} />
               <Route path="/ourdog/sire/:sirename" component={SireDetail} />

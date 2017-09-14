@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-class Dam extends Component {
+class DamDetail extends Component {
 
   state = {
     data: [],
   }
 
   componentDidMount() {
-    axios.get('http://13.124.112.126:4000/api/dam')
+    const { damname } = this.props.match.params;
+    axios.get(`http://13.124.112.126:4000/api/dam/${damname}`)
       .then((res) => {
         this.setState({
           data: res.data,
@@ -18,15 +18,13 @@ class Dam extends Component {
       });
   }
 
-  renderDam = () => (
+  renderDamDetail = () => (
     this.state.data.map(data => (
       <div>
-        <Link to={`/ourdog/Dam/${data._id}`}>
-          <Image
-            src={data.titleImage}
-            responsive
-          />
-        </Link>
+        <Image
+          src={data.subImage}
+          responsive
+        />
       </div>
     ))
   )
@@ -34,13 +32,10 @@ class Dam extends Component {
   render() {
     return (
       <div>
-        <div>
-          {this.renderDam()}
-        </div>
+        {this.renderDamDetail()}
       </div>
     );
   }
 }
 
-
-export default Dam;
+export default DamDetail;

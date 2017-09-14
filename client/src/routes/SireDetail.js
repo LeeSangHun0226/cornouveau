@@ -4,7 +4,7 @@ import axios from 'axios';
 import priceImg from '../images/price.jpeg';
 import './Product.css';
 
-class Product extends Component {
+class SireDetail extends Component {
 
   state = {
     data: [],
@@ -40,4 +40,4 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default SireDetail;
