@@ -21,22 +21,25 @@ class Products extends Component {
   }
 
   renderBox = () => (
-    this.state.data.map(product => (
-      <div className="col-md-6">
-        <div>
-          <Link to={`/product/${product._id}`}>
-            <Image
-              src={`${product.titlePhoto}`}
-              responsive
-            />
-          </Link>
+    this.state.data.map((product) => {
+      const price = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return (
+        <div className="col-md-6">
+          <div>
+            <Link to={`/product/${product._id}`}>
+              <Image
+                src={`${product.titlePhoto}`}
+                responsive
+              />
+            </Link>
+          </div>
+          <div className="productText">
+            {product.name} <br />
+            KRW {price}
+          </div>
         </div>
-        <div className="productText">
-          {product.name} <br />
-          {product.price}
-        </div>
-      </div>
-    ))
+      )
+    })
   )
 
   render() {

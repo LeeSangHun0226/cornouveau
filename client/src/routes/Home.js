@@ -1,25 +1,19 @@
 import React from 'react';
 import { Image } from 'react-bootstrap';
-import home from '../images/home.jpg';
+import Slider from 'react-slick';
 
 const homeData = [
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/1.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/new/%EB%A9%94%EC%9D%B81.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/new/%EB%A9%94%EC%9D%B82.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/3.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/new/%EB%A9%94%EC%9D%B83.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/4.jpg',
-  },
-  {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/5.jpg',
-  },
-  {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/6.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/new/%EB%A9%94%EC%9D%B84.jpg',
   },
 ];
 
@@ -29,15 +23,53 @@ const renderHome = () => (
       <Image
         src={data.image}
         responsive
+        // style={{ width: '90%' }}
       />
     </div>
    ))
 );
 
 const Home = () => {
+  const settings = {
+    dots: true,
+    // lazyLoad: true,
+    infinite: true,
+    arrows: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // autoplay: true,
+    // autoplaySpeed: 5000,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
+    responsive: [{
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    }, {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+      },
+    }, {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    }],
+  };
+
   return (
-    <div>
-      {renderHome()}
+    <div style={{ paddingBottom: '100px' }}>
+      <Slider {...settings}>
+        {renderHome()}
+      </Slider>
     </div>
   );
 };

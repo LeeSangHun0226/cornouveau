@@ -17,10 +17,11 @@ import Payment from './routes/Payment';
 import Complete from './routes/Complete';
 import Cornouveau from './routes/Cornouveau';
 import Sire from './routes/Sire';
+import SireDetail from './routes/SireDetail';
 import Italian from './routes/Italian';
 import News from './routes/News';
-import Dams from './routes/Dams';
 import Dam from './routes/Dam';
+import DamDetail from './routes/DamDetail';
 
 import Header from './components/Header';
 import Footer from './components/Footer/Footer';
@@ -44,9 +45,11 @@ const App = () => (
               <Route path="/campaign" component={Campaign} />
               <Route path="/gallery" component={GalleryComponent} />
 
-              <Route exact path="/ourdog" component={Sire} />
-              <Route path="/ourdog/sire" component={Sire} />
-              <Route path="/ourdog/dam" component={Dam} />
+              <Route exact path="/ourdog/sire" component={Sire} />
+              <Route path="/ourdog/sire/:sirename" component={SireDetail} />
+              
+              <Route exact path="/ourdog/dam" component={Dam} />
+              <Route exact path="/ourdog/dam/:damname" component={DamDetail} />
 
               <Route path="/adoptions" component={Adoptions} />
               <Route path="/adoption/:adoptionName" component={Adoption} />

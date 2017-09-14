@@ -1,31 +1,31 @@
-const Sire = require('../models/sire');
+const Dam = require('../models/dam');
 
-exports.saveSire = (req, res) => {
+exports.saveDam = (req, res) => {
   const { name, titleImage, subImage } = req.body;
 
-  const sire = new Sire({
+  const dam = new Dam({
     name,
     titleImage,
     subImage,
   });
 
-  return sire.save()
+  return dam.save()
   .then(data => res.json(data))
   .catch(err => res.send({ err }));
 };
 
-exports.oneSireGet = (req, res) => {
-  const sireId = req.params.sirename;
+exports.oneDamGet = (req, res) => {
+  const damId = req.params.damname;
 
-  Sire.find({ _id: sireId }, (err, data) => {
+  Dam.find({ _id: damId }, (err, data) => {
     if (err) res.send({ err });
     return res.json(data);
   });
 };
 
 
-exports.allSireGet = (req, res) => {  
-  Sire.find({}, (err, data) => {
+exports.allDamGet = (req, res) => {  
+  Dam.find({}, (err, data) => {
     if (err) console.log(req.err);
     return res.json(data);
   });

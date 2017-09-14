@@ -49,6 +49,11 @@ class Payment extends Component {
   }
 
   isPaid = (data) => {
+    console.log(data);
+    // axios.post('http://13.124.112.126:4000/api/payment', data)
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
     IMP.request_pay({
       pg: 'nice', // version 1.1.0부터 지원.
       pay_method: `${data.paymentMethod}`,
@@ -146,25 +151,25 @@ class Payment extends Component {
           주문자 정보
         </div>
         <form onSubmit={handleSubmit(this.handleSubmit)}>
-          <Field name="userName" type="text" component={this.renderField} label="주문자(??????)" />
-          <Field name="userPhone" type="text" component={this.renderField} label="주문자 연락처" />
-          <Field name="userEmail" type="email" component={this.renderField} label="주문자 메일" />
+          <Field name="userName" type="text" component={this.renderField} label="주문자(name)" />
+          <Field name="userPhone" type="text" component={this.renderField} label="연락처(phone no.)" />
+          <Field name="userEmail" type="email" component={this.renderField} label="이메일(e-mail)" />
           <div className="Payment-info">
           배송지 정보
           </div>
-          <Field name="nonMemeberCode" type="text" component={this.renderField} label="주문번호" />
-          <Field name="shippingName" type="text" component={this.renderField} label="배송자 이름" />
-          <Field name="postcode" type="text" component={this.renderPostcode} label="배송지" />
+          <Field name="nonMemeberCode" type="text" component={this.renderField} label="주문번호(order no.)" />
+          <Field name="shippingName" type="text" component={this.renderField} label="배송자 이름(addressee)" />
+          <Field name="postcode" type="text" component={this.renderPostcode} label="배송지(address)" />
           <Field name="baseAddress" type="text" component={this.renderField} />
           <Field name="extraAddress" type="text" component={this.renderField} />
-          <Field name="shippingPhone" type="text" component={this.renderField} label="배송자 번호" />
-          <Field name="customerMessage" type="text" component={this.renderField} label="배송 메세지" />
+          <Field name="shippingPhone" type="text" component={this.renderField} label="배송자 번호(address no.)" />
+          <Field name="customerMessage" type="text" component={this.renderField} label="배송 메시지(order message)" />
           <div className="Payment-info">
           결제방법
           </div>
-          <div>
+          <div style={{ marginLeft: '20px' }}>
             <label>
-              <Field name="paymentMethod" component="input" type="radio" value="card"/>{' '}카드결제
+              <Field name="paymentMethod" component="input" type="radio" value="card" />{' '}카드
             </label>
             <label>
               <Field name="paymentMethod" component="input" type="radio" value="phone"/>{' '}모바일결제
@@ -173,15 +178,13 @@ class Payment extends Component {
               <Field name="paymentMethod" component="input" type="radio" value="trans" />{' '}계좌이체
             </label>
           </div>
-          <div>
+          <div style={{ marginLeft: '20px' }}>
             <button type="submit" disabled={submitting}>
-              Submit
-        </button>
+              제출
+            </button>
             <button type="button" disabled={pristine || submitting} onClick={reset}>
-              Clear Values
-        </button>
-        <button onClick={() => this.isTransPaid()}>무통장
-        </button>
+              삭제
+            </button>
           </div>
         </form>
         <Modal
@@ -221,9 +224,9 @@ class Payment extends Component {
 
 const validate = (values) => {
   const errors = {};
-  // if (!values.userName) {
-  //   errors.userName = 'Required';
-  // }
+  if (!values.userName) {
+    errors.userName = 'Required';
+  }
   // if (!values.userPhone) {
   //   errors.userPhone = 'Required';
   // } else if (!/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i.test(values.userPhone)) {
@@ -250,9 +253,9 @@ const validate = (values) => {
   // } else if (!/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i.test(values.shippingPhone)) {
   //   errors.shippingPhone = 'Invalid phone address';
   // }
-  if (!values.paymentMethod) {
-    errors.paymentMethod = 'Required';
-  }
+  // if (!values.paymentMethod) {
+  //   errors.paymentMethod = 'Required';
+  // }
   return errors;
 };
 

@@ -50,13 +50,14 @@ class Product extends Component {
   renderPaymentBox = () => {
     if (this.state.productData.length > 0) {
       const productData = this.state.productData[0];
+      const price = productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       return (
         <div className="product-payment-wrapper">
           <h2>
             {productData.name}
           </h2>
           <h3>
-            {productData.price}
+            KRW {price}
           </h3>
           <form onSubmit={this.handleSubmit}>
             <label>

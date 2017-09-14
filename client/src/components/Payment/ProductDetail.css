@@ -1,7 +1,6 @@
 .ProductDetail-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: inline-block;
+  background-color: rgb(230,230,230);
 }
 
 .ProductDetail-thumbnail {
@@ -11,20 +10,19 @@
 
 .ProductDetail-content-wrapper {
   width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  float: left;
+  margin: auto;
+  text-align: left;
 }
 
 .ProductDetail-content-name {
-  flex-direction: row;
+  font-size: 20px;
 }
 
 .ProductDetail-content-size {
-  flex-direction: row;
+  font-size: 20px;
 }
 
 .ProductDetail-content-qty {
-  flex-direction: row;
+  font-size: 20px;
 }

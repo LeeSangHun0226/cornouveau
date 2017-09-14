@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './Sire.css';
+import priceImg from '../images/price.jpeg';
+import './Product.css';
 
-class Sire extends Component {
+class Product extends Component {
 
   state = {
     data: [],
   }
 
   componentDidMount() {
-    axios.get('http://13.124.112.126:4000/api/sire')
+    const { sirename } = this.props.match.params;
+    axios.get(`http://13.124.112.126:4000/api/sire/${sirename}`)
       .then((res) => {
         this.setState({
           data: res.data,
@@ -19,15 +20,13 @@ class Sire extends Component {
       });
   }
 
-  renderSire = () => (
+  renderSireDetail = () => (
     this.state.data.map(data => (
       <div>
-        <Link to={`/ourdog/sire/${data._id}`}>
-          <Image
-            src={data.titleImage}
-            responsive
-          />
-        </Link>
+        <Image
+          src={data.subImage}
+          responsive
+        />
       </div>
     ))
   )
@@ -35,13 +34,10 @@ class Sire extends Component {
   render() {
     return (
       <div>
-        <div>
-          {this.renderSire()}
-        </div>
+        {this.renderSireDetail()}
       </div>
     );
   }
 }
 
-
-export default Sire;
+export default Product;

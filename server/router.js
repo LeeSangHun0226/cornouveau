@@ -2,11 +2,13 @@ const express = require('express');
 
 const ProductController = require('./controllers/product');
 const SireController = require('./controllers/sire');
+const DamController = require('./controllers/dam');
 
 module.exports = function (app) {
   const apiRoutes = express.Router();
   const productRoutes = express.Router();
   const sireRoutes = express.Router();
+  const damRoutes = express.Router();
   /*------------------------------------------------------------------------------
     PRODUCT ROUTE
   ------------------------------------------------------------------------------*/
@@ -19,8 +21,14 @@ module.exports = function (app) {
   apiRoutes.use('/sire', sireRoutes);
 
   sireRoutes.get('/', SireController.allSireGet);
-  sireRoutes.get('/:productname', SireController.oneSireGet);
+  sireRoutes.get('/:sirename', SireController.oneSireGet);
   sireRoutes.post('/', SireController.saveSire);
+
+  apiRoutes.use('/dam', damRoutes);
+
+  damRoutes.get('/', DamController.allDamGet);
+  damRoutes.get('/:damname', DamController.oneDamGet);
+  damRoutes.post('/', DamController.saveDam);
 
   app.use('/api', apiRoutes);
 };

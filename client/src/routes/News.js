@@ -1,64 +1,48 @@
 import React, { Component } from 'react';
-import ImageGallery from 'react-image-gallery';
-import "react-image-gallery/styles/css/image-gallery.css";
+import { Image } from 'react-bootstrap';
+// import ImageGallery from 'react-image-gallery';
+// import "react-image-gallery/styles/css/image-gallery.css";
+
+const newsData = [
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0001.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0002.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0003.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0004.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0005.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0006.jpg',
+  },
+];
 
 
 class News extends Component {
-  handleImageLoad(event) {
-    console.log('Image loaded ', event.target);
-  }
 
-  renderPlayPauseButton(onClick, isPlaying) {
-    return (
-        <button
-          type='button'
-          className={
-            `image-gallery-play-button${isPlaying ? ' active' : ''}`}
-          onClick={onClick}
+  renderNews = () => (
+    newsData.map((data, i) => (
+      <div key={i}>
+        <Image
+          src={data.image}
+          style={{ width: '87%', marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
         />
-    );
-  }
+      </div>
+    ))
+  )
 
   render() {
-    const images = [
-      {
-        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0001.jpg',
-        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0001.jpg',
-      },
-      {
-        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0002.jpg',
-        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0002.jpg',
-      },
-      {
-        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0003.jpg',
-        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0003.jpg',
-      },
-      {
-        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0004.jpg',
-        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0004.jpg',
-      },
-      {
-        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0005.jpg',
-        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0005.jpg',
-      },
-      {
-        original: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0006.jpg',
-        thumbnail: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/1.about/3.news/%ED%94%BC%ED%8F%AC%EB%8B%89%EC%8A%A4+%EB%B0%A9%EB%AC%B8%EA%B8%B0/1%EC%84%B8%EB%B6%80/0006.jpg',
-      },
-    ];
-
     return (
-      <ImageGallery
-        // showBullets
-        // renderPlayPauseButton={this.renderPlayPauseButton}
-        // thumbnailPosition="top"
-        lazyLoad={false}
-        items={images}
-        showPlayButton={false}
-        showFullscreenButton={false}
-        // slideInterval={2000}
-        // onImageLoad={this.handleImageLoad}
-      />
+      <div>
+        {this.renderNews()}
+      </div>
   )
     //   <div style={{ width: '100%', height: '80%' }}>
     //     <Carousel style={{ backgroundColor: 'white', display: 'flex', flex: 1, justifyContent: 'center' }}>
@@ -84,6 +68,6 @@ class News extends Component {
     //    </div>
     // );
   }
-};
+}
 
 export default News;

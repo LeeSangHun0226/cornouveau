@@ -47,6 +47,8 @@ export default class Header extends ResponsiveFactor {
 
   renderHeader = () => {
     return (
+      // <div style={{ position: 'absolute', width: '100%' }}>
+      <div>
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
@@ -69,7 +71,7 @@ export default class Header extends ResponsiveFactor {
                 <MenuItem eventKey={1.2}>Italian Greyhounds</MenuItem>
               </LinkContainer>
               <LinkContainer to="/about/news">
-                <MenuItem eventKey={1.3}>News</MenuItem>
+                <MenuItem eventKey={1.3}>news</MenuItem>
               </LinkContainer>
             </NavDropdown>
             <LinkContainer to="/campaign">
@@ -95,6 +97,7 @@ export default class Header extends ResponsiveFactor {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      </div>
     );
   }
 
