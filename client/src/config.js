@@ -5,7 +5,12 @@ const appConfig = {
   ClientId: '14i4ln54gokmf02ogni6ls2iqj',
 };
 
-export default appConfig;
+const fetchServerConfig = {
+  // ip: 'localhost',
+  ip: '13.124.112.126',
+};
+
+export { appConfig, fetchServerConfig };
 
 // {
 //   "region": "us-east-2",

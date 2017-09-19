@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { fetchServerConfig } from '../config';
+
 import axios from 'axios';
 
 class Dam extends Component {
@@ -10,7 +12,7 @@ class Dam extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://13.124.112.126:4000/api/dam')
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/dam`)
       .then((res) => {
         this.setState({
           data: res.data,

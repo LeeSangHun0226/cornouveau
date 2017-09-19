@@ -11,7 +11,7 @@ const port = 4000;
 const db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', () => { console.log('Connected to mogod server'); });
-mongoose.connect('localhost:27017/cornouveau');
+mongoose.connect('mongodb://cornouveau:cprpqkfk@ec2-13-124-112-126.ap-northeast-2.compute.amazonaws.com:27017/cornouveau');
 
 app.listen(port, () => console.log(`server is start. port is ${port}`));
 

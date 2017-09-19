@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
 import axios from 'axios';
 import priceImg from '../images/price.jpeg';
+import { fetchServerConfig } from '../config';
 // import './Product.css';
 
 class SireDetail extends Component {
@@ -12,11 +13,11 @@ class SireDetail extends Component {
 
   componentDidMount() {
     const { sirename } = this.props.match.params;
-    axios.get(`http://13.124.112.126:4000/api/sire/${sirename}`)
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/sire/${sirename}`)
       .then((res) => {
         console.log(res);
         this.setState({
-          data: res.data,
+          data: res.data[0].subImage,
         });
       });
   }
@@ -25,11 +26,11 @@ class SireDetail extends Component {
     this.state.data.map(data => (
       <div>
         <Image
-          src={data.subImage}
+          src={data}
           responsive
         />
       </div>
-    ))
+      ))
   )
 
   render() {

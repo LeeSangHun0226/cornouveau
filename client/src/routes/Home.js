@@ -4,16 +4,28 @@ import Slider from 'react-slick';
 
 const homeData = [
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/new/%EB%A9%94%EC%9D%B81.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A1%9C%EC%8A%A4%EC%B2%BC%EC%84%B8%EB%B6%800.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/new/%EB%A9%94%EC%9D%B82.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A1%9D%ED%8E%A0%EC%84%B8%EB%B6%800.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/new/%EB%A9%94%EC%9D%B83.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A3%A8%ED%8C%A1%EC%84%B8%EB%B6%800.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/new/%EB%A9%94%EC%9D%B84.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A6%AC%EB%B6%80%EC%84%B8%EB%B6%800w.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A6%AC%EC%BD%94%EC%84%B8%EB%B6%800w.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EC%95%84%EB%A5%B4%EC%84%B8%EB%B6%800w.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EC%A0%9C%EB%84%A4%EC%8A%A4%EC%84%B8%EB%B6%800w.jpg',
+  },
+  {
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%ED%86%A0%EB%AF%B8%EC%84%B8%EB%B6%800w.jpg',
   },
 ];
 
@@ -38,7 +50,7 @@ const Home = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 1000,
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
     responsive: [{

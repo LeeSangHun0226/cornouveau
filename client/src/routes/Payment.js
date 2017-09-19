@@ -161,7 +161,9 @@ class Payment extends Component {
           <p className="Payment-info">
           배송지 정보
           </p>
-          <Field name="nonMemeberCode" type="text" component={this.renderField} label="주문번호(order no.)" />
+          {/*
+            <Field name="nonMemeberCode" type="text" component={this.renderField} label="주문번호(order no.)" />
+          */}
           <Field name="shippingName" type="text" component={this.renderField} label="받는 분(addressee)" />
           <Field name="postcode" type="text" component={this.renderPostcode} label="배송지(address)" />
           <Field name="baseAddress" type="text" component={this.renderField} />
@@ -267,8 +269,8 @@ const validate = (values) => {
 
 const warn = (values) => {
   const warnings = {};
-  if (values.age < 19) {
-    warnings.age = 'Hmm, you seem a bit young...';
+  if (values.age < 10) {
+    warnings.age = '??';
   }
   return warnings;
 };

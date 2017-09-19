@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { fetchServerConfig } from '../config';
 import './Products.css';
 // import Media from 'react-media';
 
@@ -12,7 +13,7 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://13.124.112.126:4000/api/product')
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/product`)
       .then((res) => { 
         this.setState({
           data: res.data,

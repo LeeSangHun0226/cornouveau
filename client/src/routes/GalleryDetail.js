@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
 import axios from 'axios';
+import { fetchServerConfig } from '../config';
 
 class GalleryDetail extends Component {
 
@@ -10,7 +11,7 @@ class GalleryDetail extends Component {
 
   componentDidMount() {
     const { galleryname } = this.props.match.params;
-    axios.get(`http://13.124.112.126:4000/api/gallery/${galleryname}`)
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/gallery/${galleryname}`)
       .then((res) => {
         console.log(res)
         this.setState({

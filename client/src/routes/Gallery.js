@@ -5,6 +5,7 @@ import { DotLoader } from 'react-spinners';
 import axios from 'axios';
 import Modal from 'react-modal';
 import closedImage from '../images/close.png';
+import { fetchServerConfig } from '../config';
 import './Gallery.css'
 
 class GalleryComponent extends Component {
@@ -30,8 +31,9 @@ class GalleryComponent extends Component {
 
 
   componentDidMount() {
-    axios.get('http://13.124.112.126:4000/api/gallery')
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/gallery`)
       .then((res) => {
+        console.log(res);
         this.setState({
           data: res.data,
           loading: false,

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image, Button } from 'react-bootstrap';
 import axios from 'axios';
 import priceImg from '../images/price.jpeg';
+import { fetchServerConfig } from '../config';
 import './Product.css';
 
 class Product extends Component {
@@ -14,7 +15,7 @@ class Product extends Component {
 
   componentDidMount() {
     const { productname } = this.props.match.params;
-    axios.get(`http://13.124.112.126:4000/api/product/${productname}`)
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/product/${productname}`)
       .then((res) => {
         this.setState({
           productData: res.data,
@@ -154,6 +155,12 @@ class Product extends Component {
         <div style={{ display: 'flex', flex: 1 }}>
           {this.renderProductBox()}
           {this.renderPaymentBox()}
+        </div>
+        <div className="product-imgBox-detail">
+          <Image
+            src={'https://s3.ap-northeast-2.amazonaws.com/cornouveau/6.product/AS%EC%9D%B4%EB%AF%B8%EC%A7%80(%EB%AA%A8%EB%93%A0%EC%83%81%ED%92%88).jpg'}
+            responsive
+          />
         </div>
         {this.renderDetailBox()}
       </div>
