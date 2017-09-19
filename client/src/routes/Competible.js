@@ -5,7 +5,7 @@ import priceImg from '../images/price.jpeg';
 import { fetchServerConfig } from '../config';
 import './Product.css';
 
-class Product extends Component {
+class Competible extends Component {
 
   state = {
     productData: [],
@@ -14,8 +14,8 @@ class Product extends Component {
   }
 
   componentDidMount() {
-    const { productname } = this.props.match.params;
-    axios.get(`http://${fetchServerConfig.ip}:4000/api/product/${productname}`)
+    const { competiblename } = this.props.match.params;
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/competible/${competiblename}`)
       .then((res) => {
         this.setState({
           productData: res.data,
@@ -168,4 +168,4 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default Competible;

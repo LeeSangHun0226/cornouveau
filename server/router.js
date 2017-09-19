@@ -4,6 +4,7 @@ const ProductController = require('./controllers/product');
 const SireController = require('./controllers/sire');
 const DamController = require('./controllers/dam');
 const GalleryController = require('./controllers/gallery');
+const CompetibleController = require('./controllers/competible');
 
 module.exports = function (app) {
   const apiRoutes = express.Router();
@@ -11,6 +12,7 @@ module.exports = function (app) {
   const sireRoutes = express.Router();
   const damRoutes = express.Router();
   const galleryRoutes = express.Router();
+  const competibleRoutes = express.Router();
   /*------------------------------------------------------------------------------
     PRODUCT ROUTE
   ------------------------------------------------------------------------------*/
@@ -19,6 +21,12 @@ module.exports = function (app) {
   productRoutes.get('/', ProductController.allProductsGet);
   productRoutes.get('/:productname', ProductController.oneProductGet);
   productRoutes.post('/', ProductController.saveProduct);
+
+  apiRoutes.use('/competible', competibleRoutes);
+
+  competibleRoutes.get('/', CompetibleController.allCompetiblesGet);
+  competibleRoutes.get('/:competiblename', CompetibleController.oneCompetibleGet);
+  competibleRoutes.post('/', CompetibleController.saveCompetible);
 
   apiRoutes.use('/sire', sireRoutes);
 

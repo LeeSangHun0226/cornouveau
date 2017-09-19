@@ -23,6 +23,8 @@ import Italian from './routes/Italian';
 import News from './routes/News';
 import Dam from './routes/Dam';
 import DamDetail from './routes/DamDetail';
+import Competibles from './routes/Competibles';
+import Competible from './routes/Competible';
 
 import Header from './components/Header';
 import Footer from './components/Footer/Footer';
@@ -59,6 +61,9 @@ const App = () => (
 
               <Route exact path="/products" component={Products} />
               <Route path="/product/:productname" component={Product} />
+
+              <Route exact path="/products/competibles" component={Competibles} />
+              <Route path="/products/competible/:competiblename" component={Competible} />
 
               <Route exact path="/payment" component={Payment} />
               <Route path="/payment/complete" component={Complete} />

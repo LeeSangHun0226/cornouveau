@@ -91,9 +91,14 @@ export default class Header extends ResponsiveFactor {
             <LinkContainer to="/adoptions">
               <NavItem eventKey={5} href="#">ADOPTION</NavItem>
             </LinkContainer>
-            <LinkContainer to="/products">
-              <NavItem eventKey={6} href="#">PRODUCT</NavItem>
-            </LinkContainer>
+            <NavDropdown eventKey={6} title="PRODUCT" id="basic-nav-dropdown">
+              <LinkContainer to="/products">
+                <NavItem eventKey={6.1} href="#">Main</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/products/competibles">
+                <NavItem eventKey={6.2} href="#">Competible</NavItem>
+              </LinkContainer>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
