@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Button } from 'react-bootstrap';
 import Modal from 'react-modal';
 import DaumPostcode from 'react-daum-postcode';
 import axios from 'axios';
@@ -123,7 +124,7 @@ class Payment extends Component {
         </label>
       </div>
       <div className="Payment-renderField-input-postcode">
-        <input {...input} placeholder={label} type={type} style={{ borderWidth: '1px', borderStyle: 'solid', width: '50%', height: '100%', outline: 'none' }} />
+        <input {...input} placeholder={label} type={type} style={{}} />
         {touched &&
           ((error &&
             <span>
@@ -143,48 +144,53 @@ class Payment extends Component {
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <div style={{ paddingBottom: '100px' }}>
-        <ProductDetail
-          product={this.state.productData === '' ? this.props.location.state : this.state.productData}
-        />
-        <div className="Payment-info">
-          주문자 정보
-        </div>
+      <div style={{}}>
         <form onSubmit={handleSubmit(this.handleSubmit)}>
+          <p className="Payment-info">
+            주문 정보
+          </p>
+          <ProductDetail
+            product={this.state.productData === '' ? this.props.location.state : this.state.productData}
+          />
+          <p className="Payment-info">
+            주문자 정보
+          </p>
           <Field name="userName" type="text" component={this.renderField} label="주문자(name)" />
           <Field name="userPhone" type="text" component={this.renderField} label="연락처(phone no.)" />
           <Field name="userEmail" type="email" component={this.renderField} label="이메일(e-mail)" />
-          <div className="Payment-info">
+          <p className="Payment-info">
           배송지 정보
-          </div>
+          </p>
           <Field name="nonMemeberCode" type="text" component={this.renderField} label="주문번호(order no.)" />
-          <Field name="shippingName" type="text" component={this.renderField} label="배송자 이름(addressee)" />
+          <Field name="shippingName" type="text" component={this.renderField} label="받는 분(addressee)" />
           <Field name="postcode" type="text" component={this.renderPostcode} label="배송지(address)" />
           <Field name="baseAddress" type="text" component={this.renderField} />
           <Field name="extraAddress" type="text" component={this.renderField} />
-          <Field name="shippingPhone" type="text" component={this.renderField} label="배송자 번호(address no.)" />
+          <Field name="shippingPhone" type="text" component={this.renderField} label="받는 분 번호(address no.)" />
           <Field name="customerMessage" type="text" component={this.renderField} label="배송 메시지(order message)" />
           <div className="Payment-info">
           결제방법
           </div>
-          <div style={{ marginLeft: '20px' }}>
-            <label>
-              <Field name="paymentMethod" component="input" type="radio" value="card" />{' '}카드
+          <div className="Payment-renderField-wrapper">
+            <div className="Payment-renderField-label-wrapper" style={{ display: 'block' }}>
+            <label className="Payment-renderField-label" style={{ fontSize: '12px', marginBottom: '15px', marginTop: '15px' }}>
+              <Field name="paymentMethod" component="input" type="radio" value="card" />{' '}신용카드
             </label>
-            <label>
-              <Field name="paymentMethod" component="input" type="radio" value="phone"/>{' '}모바일결제
+            <label className="Payment-renderField-label" style={{ fontSize: '12px', marginBottom: '15px' }}>
+             <Field name="paymentMethod" component="input" type="radio" value="trans" />{' '}무통장입금
             </label>
-            <label>
-              <Field name="paymentMethod" component="input" type="radio" value="trans" />{' '}계좌이체
-            </label>
+            </div>
           </div>
-          <div style={{ marginLeft: '20px' }}>
-            <button type="submit" disabled={submitting}>
-              제출
-            </button>
-            <button type="button" disabled={pristine || submitting} onClick={reset}>
-              삭제
-            </button>
+          <div className="Payment-renderField-label-wrapper" style={{ marginTop: '50px', paddingBottom: '27px' }}>
+            <Button
+              type="submit"
+              disabled={submitting}
+              style={{ width: '100px' }}
+            >
+              결제
+            </Button>
+          </div>
+          <div style={{ paddingBottom: '50px', background: '#E0E0E0' }}>
           </div>
         </form>
         <Modal

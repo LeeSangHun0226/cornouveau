@@ -9,27 +9,29 @@ const ProductDetail = (props) => {
   const totalPrice = totalPriceNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return (
     <div className="ProductDetail-wrapper">
-      <div className="ProductDetail-thumbnail">
-        <Image
-          src={`${productData[0].titlePhoto}`}
-          responsive
-        />
-      </div>
       <div className="ProductDetail-content-wrapper">
-        <div className="ProductDetail-content-name">
-          <label> NAME: {productData[0].name} </label>
+        <h3 className="ProductDetail-content-name">
+          <label>{productData[0].name} </label>
+        </h3>
+        <div className="ProductDetail-thumbnail">
+          <Image
+            src={`${productData[0].titlePhoto}`}
+            style={{ width: '100px', marginBottom: '10px' }}
+          />
+          <p className="ProductDetail-content-size">
+            <p>Size : {productSize}</p>
+          </p>
+          <p className="ProductDetail-content-qty">
+            <p>Qty : {productQty}</p>
+          </p>
+          <p className="ProductDetail-content-price">
+            <p>Price : {price} ₩ </p>
+          </p>
+          <p className="ProductDetail-content-total">
+            <p>Total : {totalPrice} ₩ </p>
+          </p>
         </div>
-        <div className="ProductDetail-content-size">
-          <label> SIZE: {productSize} </label>
-        </div>
-        <div className="ProductDetail-content-qty">
-          <label> QTY: {productQty} </label>
-        </div>
-        <div className="ProductDetail-content-price">
-          <label> PRICE: KRW {price} </label>
-        </div>
-        <div className="ProductDetail-content-total">
-          <label> TOTAL: KRW {totalPrice} </label>
+        <div style={{ paddingBottom: '10px' }}>
         </div>
       </div>
     </div>

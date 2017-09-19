@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import rootReducer from './store';
 import Home from './routes/Home';
 import Campaign from './routes/Campaign';
-import GalleryComponent from './routes/Gallery';
+import Gallery from './routes/Gallery';
 import GalleryDetail from './routes/GalleryDetail';
 import Adoptions from './routes/Adoptions';
 import Adoption from './routes/Adoption';
@@ -45,7 +45,7 @@ const App = () => (
 
               <Route path="/campaign" component={Campaign} />
               
-              <Route exact path="/gallery" component={GalleryComponent} />
+              <Route exact path="/gallery" component={Gallery} />
               <Route path="/gallery/:galleryname" component={GalleryDetail} />
 
               <Route exact path="/ourdog/sire" component={Sire} />

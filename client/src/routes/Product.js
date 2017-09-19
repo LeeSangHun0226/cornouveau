@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-bootstrap';
+import { Image, Button } from 'react-bootstrap';
 import axios from 'axios';
 import priceImg from '../images/price.jpeg';
 import './Product.css';
@@ -34,7 +34,7 @@ class Product extends Component {
     });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = () => {
     this.props.history.push({
       pathname: '/payment',
       state: {
@@ -43,7 +43,7 @@ class Product extends Component {
         productQty: this.state.productQty,
       },
     });
-    event.preventDefault();
+    // event.preventDefault();
   }
 
 
@@ -84,13 +84,24 @@ class Product extends Component {
                 <option value="10">10</option>
               </select>
             </label>
+            </form>
             <Image
               src={priceImg}
               responsive
             />
             <div />
-            <input type="submit" value="BUY NOW" />
-          </form>
+            <Button
+              style={{
+                textAlign: 'center',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginBottom: '30px',
+                width: '100px',
+              }}
+              onClick={() => this.handleSubmit()}
+            >
+              BUY NOW
+            </Button>
         </div>
       );
     }
@@ -135,9 +146,15 @@ class Product extends Component {
 
   render() {
     return (
-      <div style={{ background: 'rgb(230,230,230)' }}>
-        {this.renderProductBox()}
-        {this.renderPaymentBox()}
+      <div style={{
+        paddingBottom: '100px',
+        background: '#E0E0E0',
+      }}
+      >
+        <div style={{ display: 'flex', flex: 1 }}>
+          {this.renderProductBox()}
+          {this.renderPaymentBox()}
+        </div>
         {this.renderDetailBox()}
       </div>
     );

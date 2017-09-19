@@ -77,7 +77,7 @@ class Italian extends Component {
         <Image
           src={data.image}
           style={{
-            width: '87%',
+            width: '80%',
             marginLeft: 'auto',
             marginRight: 'auto',
         }}
@@ -125,7 +125,7 @@ class Italian extends Component {
     };
 
     return (
-      <div style={{paddingBottom: '100px' }}>
+      <div style={{ paddingBottom: '100px', background: '#E0E0E0' }}>
         <Slider {...settings}>
           {this.renderImages(images)}
         </Slider>

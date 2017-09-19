@@ -1,28 +1,40 @@
 .ProductDetail-wrapper {
-  display: inline-block;
-  background-color: rgb(230,230,230);
+  display: flex;
+  background-color: white;
 }
 
 .ProductDetail-thumbnail {
-  width: 50%;
-  float: left;
+  /* margin-bottom: 10px; */
 }
 
 .ProductDetail-content-wrapper {
-  width: 50%;
+  /* width: 50%; */
   float: left;
   margin: auto;
-  text-align: left;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .ProductDetail-content-name {
-  font-size: 20px;
+  /* font-size: 15px; */
+  color: dimgray;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 18px;
 }
 
 .ProductDetail-content-size {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .ProductDetail-content-qty {
-  font-size: 20px;
+  font-size: 15px;
+}
+
+.ProductDetail-content-price {
+ font-size: 15px;
+}
+
+.ProductDetail-content-total {
+ font-size: 15px;
 }

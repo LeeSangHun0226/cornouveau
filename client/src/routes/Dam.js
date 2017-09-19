@@ -21,7 +21,7 @@ class Dam extends Component {
   renderDam = () => (
     this.state.data.map(data => (
       <div>
-        <Link to={`/ourdog/Dam/${data._id}`}>
+        <Link to={`/ourdog/dam/${data._id}`}>
           <Image
             src={data.titleImage}
             responsive
@@ -33,7 +33,7 @@ class Dam extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ background: '#E0E0E0', paddingBottom: '50px' }}>
         <div>
           {this.renderDam()}
         </div>

@@ -31,7 +31,7 @@ class DamDetail extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ background: '#E0E0E0', paddingBottom: '50px' }}>
         {this.renderDamDetail()}
       </div>
     );

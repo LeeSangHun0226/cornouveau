@@ -15,8 +15,10 @@
 
 .product-payment-wrapper {
   width: 50%;
-
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  justify-content: space-around;
   float: left;
   background: rgb(230,230,230);
 }

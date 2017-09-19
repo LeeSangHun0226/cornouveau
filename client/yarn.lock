@@ -2019,6 +2019,10 @@ domhandler@2.1:
   dependencies:
     domelementtype "1"
 
+domkit@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/domkit/-/domkit-0.0.1.tgz#88399d586794efc1154fec6c22cfe50f19bd4dbb"
+
 domutils@1.1:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.1.6.tgz#bddc3de099b9a2efacc51c623f28f416ecc57485"
@@ -5540,6 +5544,12 @@ react-slick@^0.15.4:
     json2mq "^0.2.0"
     object-assign "^4.1.0"
     slick-carousel "^1.6.0"
+
+react-spinners@0.0.30:
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.0.30.tgz#dd2a2e16794c38f42e6da8f49aa16d9ceb338e7d"
+  dependencies:
+    domkit "^0.0.1"
 
 react-sticky@^6.0.1:
   version "6.0.1"

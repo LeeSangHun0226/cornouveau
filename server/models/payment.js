@@ -5,7 +5,7 @@ mongoose.Promise = require('bluebird');
 const Schema = mongoose.Schema;
 
 const Product = new Schema({
-  name: { type: String, required: true },
+  userName: { type: String, required: true },
   price: { type: Number, required: true },
   amount: { type: Number },
   titlePhoto: { type: String, required: true },

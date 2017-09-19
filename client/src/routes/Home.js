@@ -31,14 +31,14 @@ const renderHome = () => (
 
 const Home = () => {
   const settings = {
-    dots: true,
+    // dots: true,
     // lazyLoad: true,
     infinite: true,
     arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // autoplay: true,
-    // autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 3000,
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
     responsive: [{
@@ -66,7 +66,7 @@ const Home = () => {
   };
 
   return (
-    <div style={{ paddingBottom: '100px' }}>
+    <div style={{ paddingBottom: '50px', background: '#E0E0E0' }}>
       <Slider {...settings}>
         {renderHome()}
       </Slider>

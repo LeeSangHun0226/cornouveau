@@ -1,267 +1,126 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
+import { DotLoader } from 'react-spinners';
+import axios from 'axios';
 import Modal from 'react-modal';
-
-// const PHOTO_SET = [
-//   {
-//     src: image169,
-//     sizes: [
-//       '(min-width: 480px) 50vw',
-//       '(min-width: 1024px) 33.3vw',
-//       '100vw',
-//     ],
-//     width: 1024,
-//     height: 1024,
-//     alt: 'image 1',
-//   },
-//   {
-//     src: image169,
-//     sizes: [
-//       '(min-width: 480px) 70vw',
-//       '(min-width: 1024px) 33.3vw',
-//       '100vw',
-//     ],
-//     width: 600,
-//     height: 600,
-//     alt: 'image 2',
-//   },
-// ];
-
+import closedImage from '../images/close.png';
+import './Gallery.css'
 
 class GalleryComponent extends Component {
 
   state = {
-    modalIsOpen: false,
-    modalData: null,
+    data: [],
+    loading: true,
+    modalData: [],
+    isModalOpen: false,
   };
 
-  openModal = (subImage) => {
+  isModalOpen = () => {
     this.setState({
-      modalIsOpen: true,
-      modalData: subImage,
+      isModalOpen: true,
     });
   }
-  closeModal = () => {
+
+  isModalClose = () => {
     this.setState({
-      modalIsOpen: false,
+      isModalOpen: false,
     });
   }
+
+
+  componentDidMount() {
+    axios.get('http://13.124.112.126:4000/api/gallery')
+      .then((res) => {
+        this.setState({
+          data: res.data,
+          loading: false,
+        });
+      });
+  }
+
+  renderGallery = () => (
+    this.state.data.map((data, i) => {
+      const className = `Gallery-${data.name}`;
+      return (
+        <div
+          className={className}
+          key={i}
+        >
+          <Image
+            src={data.titleImage}
+            onClick={() => {
+              this.setState({
+                modalData: data.titleImage,
+                isModalOpen: true,
+              });
+            }}
+            responsive
+          />
+        </div>
+      );
+    })
+  )
 
   render() {
     return (
-      <div>
-      <div style={{ }}>
-          <div style={{ float: 'left', width: 'calc(100% / 3 * 2)' }}>
-            <Link to={`/ourdog/Dam/${data._id}`}>
-              <Image
-                src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/1.jpg'
-                responsive
-                />
-            </Link>
-          </div>
-          <div style={{ float: 'left', width: 'calc(100% / 3)' }}>
+      <div style={{ display: 'flow-root', background: '#E0E0E0', paddingBottom: '50px' }}>
+        <div>
+          {this.renderGallery()}
+        </div>
+        <Modal
+          isOpen={this.state.isModalOpen}
+          style={{
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            },
+            content: {
+              position: 'absolute',
+              top: '5px',
+              left: '5px',
+              right: '5px',
+              bottom: '5px',
+              border: '1px solid #ccc',
+              background: 'rgba(0,0,0,0,5)',
+              overflow: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              borderRadius: '4px',
+              outline: 'none',
+              padding: '20px'
+            }
+          }}
+        >
+          <div>
             <Image
-              src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/2.jpg'
-              responsive
-              onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/2.jpg')}
-              />
+              src={closedImage}
+              style={{
+                width: '20px',
+                height: '20px',
+                marginLeft: '20px',
+              }}
+              onClick={() => {
+                this.setState({
+                  isModalOpen: false,
+                })
+              }}
+            />
           </div>
-          <div style={{ float: 'left', width: 'calc(100% / 3)' }}>
-            <Image
-              src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/3.jpg'
-              responsive
-              onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/3.jpg')}
-              />
-          </div>
-
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
           <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/4.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/4.jpg')}
-            />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/5.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/5.jpg')}
-            />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)'}}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/6.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/6.jpg')}
-            />
-        </div>
-
-        <div style={{ float: 'right', width: 'calc(100% / 3 * 2)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/7.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/7.jpg')}
-            />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/8.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/8.jpg')}
-            />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/9.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/9.jpg')}
-            />
-        </div>
-        <div style={{ float: 'left', width: 'calc(100% / 3 * 2)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/10.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/10.jpg')}
+            src={this.state.modalData}
+            style={{
+              width: '85%',
+              marginLeft: '7%',
+              // marginRight: '10%',
+            }}
           />
-        </div>
-        <div style={{ float: 'left', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/11.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/11.jpg')}
-          />
-        </div>
-        <div style={{ float: 'left', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/12.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/12.jpg')}
-          />
-        </div>
-
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/13.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/13.jpg')}
-          />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/14.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/14.jpg')}
-          />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/15.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/15.jpg')}
-          />
-        </div>
-
-        <div style={{ float: 'right', width: 'calc(100% / 3 * 2)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/16.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/16.jpg')}
-          />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/17.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/17.jpg')}
-          />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/18.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/18.jpg')}
-          />
-        </div>
-        <div style={{ float: 'left', width: 'calc(100% / 3 * 2)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/19.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/19.jpg')}
-          />
-        </div>
-        <div style={{ float: 'left', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/20.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/20.jpg')}
-          />
-        </div>
-        <div style={{ float: 'left', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/21.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/21.jpg')}
-          />
-        </div>
-
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/22.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/22.jpg')}
-          />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/23.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/23.jpg')}
-          />
-        </div>
-        <div style={{ float: 'right', width: 'calc(100% / 3)' }}>
-          <Image
-            src='https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/24.jpg'
-            responsive
-            onClick={() => this.openModal('https://s3.ap-northeast-2.amazonaws.com/cornouveau/3.gallery/24.jpg')}
-          />
-        </div>
+        </Modal>
       </div>
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        style={{
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            width: '100%',
-            height: '100%',
-            marginRight: '-50%',
-            borderWidth: 0,
-            transform: 'translate(-50%, -50%)',
-            backgroundColor: 'black',
-          },
-          overlay: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'black',
-          },
-        }}
-      >
-        <button onClick={() => this.closeModal()}>
-          closed
-          </button>
-        <Image
-          src={this.state.modalData}
-          responsive
-        />
-      </Modal>
-      </div>
-  );
+    );
   }
 }
 

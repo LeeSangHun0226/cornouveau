@@ -15,9 +15,9 @@ exports.saveGallery = (req, res) => {
 };
 
 exports.oneGalleryGet = (req, res) => {
-  const GalleryId = req.params.Galleryname;
+  const galleryId = req.params.galleryname;
 
-  Gallery.find({ _id: GalleryId }, (err, data) => {
+  Gallery.find({ _id: galleryId }, (err, data) => {
     if (err) res.send({ err });
     return res.json(data);
   });

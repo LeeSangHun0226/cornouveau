@@ -65,13 +65,13 @@ export default class Header extends ResponsiveFactor {
           <Nav pullRight>
             <NavDropdown eventKey={1} title="ABOUT" id="basic-nav-dropdown">
               <LinkContainer to="/about/cornouveau">
-                <MenuItem eventKey={1.1}>Cornouveau</MenuItem>
+                <MenuItem eventKey={1.1}>Cor Nouveau</MenuItem>
               </LinkContainer>
               <LinkContainer to="/about/italian">
                 <MenuItem eventKey={1.2}>Italian Greyhounds</MenuItem>
               </LinkContainer>
               <LinkContainer to="/about/news">
-                <MenuItem eventKey={1.3}>news</MenuItem>
+                <MenuItem eventKey={1.3}>News</MenuItem>
               </LinkContainer>
             </NavDropdown>
             <LinkContainer to="/campaign">
