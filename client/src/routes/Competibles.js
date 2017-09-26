@@ -45,7 +45,12 @@ class Competibles extends Component {
 
   render() {
     return (
-      <div className="row" style={{ marginRight: 0 }}>
+      <div
+        className="row"
+        style={{
+          marginRight: 0,
+        }}
+      >
         {this.renderBox()}
       </div>
     );

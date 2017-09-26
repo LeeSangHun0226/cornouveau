@@ -78,7 +78,7 @@ const Home = () => {
   };
 
   return (
-    <div style={{ paddingBottom: '50px', background: '#E0E0E0' }}>
+    <div style={{ background: '#E0E0E0' }}>
       <Slider {...settings}>
         {renderHome()}
       </Slider>

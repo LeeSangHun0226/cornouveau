@@ -35,7 +35,7 @@ class Sire extends Component {
 
   render() {
     return (
-      <div style={{ background: '#E0E0E0', paddingBottom: '50px' }}>
+      <div style={{ background: '#E0E0E0' }}>
         <div>
           {this.renderSire()}
         </div>

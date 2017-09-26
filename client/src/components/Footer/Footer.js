@@ -6,7 +6,7 @@ import instagramLogo from '../../images/instagram.png';
 import './Footer.css';
 
 const Footer = props => (
-  <div className="row" style={{ background: '#E0E0E0', color: 'black', marginRight: 0 }}>
+  <div className="row" style={{ background: '#E0E0E0', color: 'black', marginRight: 0, paddingTop: '50px' }}>
     <div className="col-md-6" style={{ marginTop: '5%' }}>
       <div className="Footer-logo-wrapper" style={{ marginLeft: '40%' }}>
         <p className="Footer-logo-text">Contact Us</p>
@@ -34,7 +34,8 @@ const Footer = props => (
       <p>COMPANY NAME: CorNouveau</p>
       <p>REG NO.: [771 - 72 - 00093]</p>
       <p>NETWORK REG NO. 2017- 경기남양주 - 0000[사업자정보확인]</p>
-      <p>T: 010 - 6288 - 9557</p>
+      <p>T: 031-594-5992</p>
+      <p>Phone: 010 - 6288 - 9557</p>
       <p>A: 12024 34- 44, Biryong - ro 1742beon- gil, Sudong - myeon, Namyangju - si, Gyeonggi -do, Republic of Korea</p>
       <p>CPO: Jang HanSol(info@cornouveau.com)</p>
       <p>국민은행 616301- 04 - 170877 코르누보</p>

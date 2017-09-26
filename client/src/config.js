@@ -6,8 +6,8 @@ const appConfig = {
 };
 
 const fetchServerConfig = {
-  ip: 'localhost',
-  // ip: '13.124.112.126',
+  // ip: 'localhost',
+  ip: '13.124.112.126',
 };
 
 export { appConfig, fetchServerConfig };

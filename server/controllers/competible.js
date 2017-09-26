@@ -17,7 +17,6 @@ exports.saveCompetible = (req, res) => {
 };
 
 exports.oneCompetibleGet = (req, res) => {
-  console.log(req.params)
   const productId = req.params.competiblename;
 
   Competible.find({ _id: productId }, (err, data) => {

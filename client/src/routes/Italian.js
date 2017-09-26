@@ -2,30 +2,6 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { Image } from 'react-bootstrap';
 import './Italian.css';
-// import ImageGallery from 'react-image-gallery';
-// import "react-image-gallery/styles/css/image-gallery.css";
-
-// SampleNextArrow = (props) => {
-//   const { className, style, onClick } = props
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: 'block', background: 'red' }}
-//       onClick={onClick}
-//     ></div>
-//   );
-// }
-
-// SamplePrevArrow = (props) => {
-//   const { className, style, onClick } = props
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: 'block', background: 'green' }}
-//       onClick={onClick}
-//     ></div>
-//   );
-// }
 
 const images = [
   {
@@ -56,6 +32,19 @@ const images = [
 
 
 class Italian extends Component {
+
+  constructor(props) {
+    super(props)
+    this.next = this.next.bind(this)
+    this.previous = this.previous.bind(this)
+  }
+  next() {
+    this.slider.slickNext()
+  }
+  previous() {
+    this.slider.slickPrev()
+  }
+
   handleImageLoad(event) {
     // console.log('Image loaded ', event.target);
   }
@@ -93,11 +82,11 @@ class Italian extends Component {
       dots: true,
       // lazyLoad: true,
       infinite: true,
-      arrows: true,
+      // arrows: true,
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 3000,
       // nextArrow: <SampleNextArrow />,
       // prevArrow: <SamplePrevArrow />,
       responsive: [{
@@ -125,10 +114,14 @@ class Italian extends Component {
     };
 
     return (
-      <div style={{ paddingBottom: '100px', background: '#E0E0E0' }}>
-        <Slider {...settings}>
+      <div style={{ background: '#E0E0E0', paddingBottom: '50px' }}>
+        <Slider ref={c => this.slider = c} {...settings}>
           {this.renderImages(images)}
         </Slider>
+        <div style={{}}>
+          <button className='button-prev' onClick={this.previous} />
+          <button className='button-next' onClick={this.next} />
+        </div>
       </div>
       
   )

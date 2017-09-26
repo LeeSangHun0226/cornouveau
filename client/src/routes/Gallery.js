@@ -66,7 +66,7 @@ class GalleryComponent extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flow-root', background: '#E0E0E0', paddingBottom: '50px' }}>
+      <div style={{ display: 'flow-root', background: '#E0E0E0' }}>
         <div>
           {this.renderGallery()}
         </div>

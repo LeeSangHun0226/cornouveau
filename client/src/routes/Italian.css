@@ -1,5 +1,35 @@
-.slick-arrow{
-  /* display: block; */
+.button-prev, .button-next{
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  background: transparent;
+  border: none;
+  outline: none;
+  top: 35%;
+  height: 20px;
+  width: 20px;
+  transform: translateY(-50%);
+}
+
+.button-prev:hover, .button-next:hover {
+  background-color: white;
+}
+
+.button-prev {
+  left: 50px;
+  background-image: url(../images/left-arrow.svg);
+}
+
+.button-next {
+  right: 50px;
+  background-image: url(../images/right-arrow.svg);
+}
+
+
+
+
+/* .slick-arrow{
+  display: block;
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -11,9 +41,9 @@
     right: 0;
 }
 
-/* .slick-arrow, slick-next {
+.slick-arrow, slick-next {
   right: 70px;
-} */
+}
 
 .slick-next {
   right: 70px;
@@ -21,4 +51,5 @@
 
 .slick-prev {
   left: 70px;
-}
+  cursor: pointer;
+} */

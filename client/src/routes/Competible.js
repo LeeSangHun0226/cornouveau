@@ -148,8 +148,6 @@ class Competible extends Component {
   render() {
     return (
       <div style={{
-        paddingBottom: '100px',
-        background: 'white',
       }}
       >
         <div style={{ display: 'flex', flex: 1 }}>
