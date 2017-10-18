@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import ProductDetail from '../components/Product/ProductDetail';
 import Payment from '../components/Payment/Payment';
+import { fetchServerConfig } from '../config';
 
 class Complete extends Component {
 
   state = {
     paymentData: '',
     productData: '',
+    merchant_uid: null,
   }
 
   componentDidMount() {
     const paymentData = JSON.parse(localStorage.getItem('paymentData'));
     const productData = JSON.parse(localStorage.getItem('productDetail'));
+    const merchant_uid = JSON.parse(localStorage.getItem('merchant_uid'));
     this.setState({
       paymentData,
       productData,
+      merchant_uid,
     })
   }
 
   render() {
-    const { paymentData, productData } = this.state;
+    const { paymentData, productData, merchant_uid } = this.state;
     const productDetail = localStorage.getItem('productDetail');
     const paymentDetail = localStorage.getItem('paymentData');
+    const merchantDetail = localStorage.getItem('merchant_uid');
     return (
       <div>
         <p className="Payment-info">
@@ -31,7 +37,10 @@ class Complete extends Component {
         <p className="Payment-info">
           결제 정보
         </p>
-        <Payment payment={paymentData === '' ? JSON.parse(paymentDetail) : paymentData} />
+        <Payment
+          payment={paymentData === '' ? JSON.parse(paymentDetail) : paymentData}
+          merchant_uid={merchant_uid === null ? JSON.parse(merchantDetail) : merchant_uid}
+        />
         <p className="Payment-info">
           결제 내역
         </p>

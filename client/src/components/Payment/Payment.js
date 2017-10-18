@@ -5,12 +5,16 @@ import './Payment.css';
 const Payment = (props) => {
   console.log(props)
   const { userName, userPhone, userEmail, shippingName, shippingPhone, baseAddress, extraAddress, paymentMethod, customerMessage } = props.payment;
+  const { merchant_uid } = props;
   const orderMessage = customerMessage ? customerMessage : '배송 메세지가 없습니다';
   const address = extraAddress ? baseAddress + extraAddress : baseAddress;
   const method = paymentMethod === 'card' ? '카드' : '무통장';
   return (
     <div className="Payment-wrapper">
       <div className="Payment-content-wrapper">
+        <p className="Payment-content-size">
+          <p>*주문조회시 반드시 필요합니다* 주문번호(merchant_uid) : {merchant_uid}</p>
+        </p>
         <p className="Payment-content-size">
           <p>주문자(name) : {userName}</p>
         </p>

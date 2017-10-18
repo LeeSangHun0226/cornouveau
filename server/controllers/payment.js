@@ -51,10 +51,10 @@ exports.savePayment = (req, res) => {
   .catch(err => res.send({ err }));
 };
 
-exports.oneButerPaymentGet = (req, res) => {
-  const PaymentId = req.params.Paymentname;
+exports.onePaymentGet = (req, res) => {
+  const merchant_uid = req.params.merchant_uid;
 
-  Payment.find({ _id: PaymentId }, (err, data) => {
+  Payment.find({ merchant_uid }, (err, data) => {
     if (err) res.send({ err });
     return res.json(data);
   });

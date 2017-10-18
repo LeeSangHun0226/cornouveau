@@ -84,7 +84,7 @@ class Payment extends Component {
       pg: 'nice', // version 1.1.0부터 지원.
       // pay_method: paymentData.paymentMethod,
       pay_method: 'phone',
-      merchant_uid: 'merchant_' + new Date().getTime(),
+      merchant_uid: new Date().getTime(),
       name: `${productData.productData[0].name}, ${productData.productQty}개, ${productData.productSize}`,
       // amount: totalPrice,
       amount: 1000,
@@ -104,6 +104,7 @@ class Payment extends Component {
         // axios.post('http://localhost:4000/api/payment')
         // .then((res) => {
         alert(msg);
+        localStorage.setItem('merchant_uid', JSON.stringify(rsp.merchant_uid));
         const product = {
           productName: rsp.name,
           price: productData.productData[0].price,

@@ -24,6 +24,7 @@ import Dam from './routes/Dam';
 import DamDetail from './routes/DamDetail';
 import Competibles from './routes/Competibles';
 import Competible from './routes/Competible';
+import Inquiry from './routes/Inquiry';
 
 import Header from './components/Header';
 import Footer from './components/Footer/Footer';
@@ -62,6 +63,8 @@ const App = () => (
 
               <Route exact path="/products/competibles" component={Competibles} />
               <Route path="/products/competible/:competiblename" component={Competible} />
+
+              <Route exact path="/products/inquiry" component={Inquiry} />
 
               <Route exact path="/payment" component={Payment} />
               <Route path="/payment/complete" component={Complete} />
