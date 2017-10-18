@@ -10,7 +10,6 @@ exports.savePayment = (req, res) => {
     shippingPhone,
     paymentMethod,
     customerMessage,
-    merchant_uid,
     postcode,
     baseAddress,
     extraAddress,
@@ -22,6 +21,7 @@ exports.savePayment = (req, res) => {
     qty,
     size,
     paymentSituation,
+    merchant_uid,
   } = req.body.product;
 
   const address = extraAddress ? `(${postcode}) ${baseAddress} ${extraAddress}` : `(${postcode} ${baseAddress}`;

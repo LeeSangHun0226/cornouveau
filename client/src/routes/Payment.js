@@ -110,12 +110,22 @@ class Payment extends Component {
           qty: Number(productData.productQty),
           size: productData.productSize,
           paymentSituation: 'deliveryWaitig',
+          merchant_uid: rsp.merchant_uid,
         };
-        console.log(product);
-        axios.post(`http://${fetchServerConfig.ip}:4000/api/payment}`, {
-          paymentData,
-          product,
-        }).then(data => console.log(data))
+        axios({
+          method: 'post',
+          url: `http://${fetchServerConfig.ip}:4000/api/payment`,
+          data: {
+            paymentData,
+            product,
+          },
+        })
+        // .post(`http://${fetchServerConfig.ip}:4000/api/payment}`, {
+        //   paymentData,
+        //   product,
+        // })
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
 
 
         this.props.history.push({
