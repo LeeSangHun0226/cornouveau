@@ -59,18 +59,30 @@ class Payment extends Component {
     const { productData } = this.state;
     const totalPrice = productData.productData[0].price * Number(productData.productQty);
     localStorage.setItem('paymentData', JSON.stringify(paymentData));
-    if (paymentData.paymentMethod === 'trans') {
+    if (paymentData.paymentMethod === 'vbank') {
       alert('무통장 입금을 하시겠습니까?');
       const merchant_uid = new Date().getTime();
-      // axios.post(`http://${fetchServerConfig.ip}:4000/api/payment/${merchant_uid}`,{
-      //   productData,
-      //   paymentData,
-      // })
-      //   .then((res) => {
-      //     console.log(res)
-      //   });
+      const product = {
+        productName: productData.productData[0].name,
+        price: productData.productData[0].price,
+        qty: Number(productData.productQty),
+        size: productData.productSize,
+        paymentSituation: '입금대기중',
+        merchant_uid,
+        photo: productData.productData[0].titlePhoto,
+      };
 
-      // axios.post
+      axios({
+        method: 'post',
+        url: `http://${fetchServerConfig.ip}:4000/api/payment`,
+        data: {
+          paymentData,
+          product,
+        },
+      })
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+
       this.props.history.push({
         pathname: '/payment/complete',
         state: {
@@ -82,12 +94,12 @@ class Payment extends Component {
     }
     IMP.request_pay({
       pg: 'nice', // version 1.1.0부터 지원.
-      // pay_method: paymentData.paymentMethod,
-      pay_method: 'phone',
+      pay_method: paymentData.paymentMethod,
+      // pay_method: 'phone',
       merchant_uid: new Date().getTime(),
       name: `${productData.productData[0].name}, ${productData.productQty}개, ${productData.productSize}`,
-      // amount: totalPrice,
-      amount: 1000,
+      amount: totalPrice,
+      // amount: 1000,
       buyer_name: paymentData.userName,
       buyer_tel: paymentData.userPhone,
       buyer_email: paymentData.userEmail,
@@ -122,10 +134,6 @@ class Payment extends Component {
             product,
           },
         })
-        // .post(`http://${fetchServerConfig.ip}:4000/api/payment}`, {
-        //   paymentData,
-        //   product,
-        // })
         .then(data => console.log(data))
         .catch(err => console.log(err))
 
@@ -233,11 +241,14 @@ class Payment extends Component {
               <Field name="paymentMethod" component="input" type="radio" value="card" />{' '}신용카드
             </label>
             <label className="Payment-renderField-label" style={{ fontSize: '12px', marginBottom: '15px' }}>
-             <Field name="paymentMethod" component="input" type="radio" value="vbank" />{' '}무통장입금
+             <Field name="paymentMethod" component="input" type="radio" value="trans" />{' '}계좌이체
+            </label>
+            <label className="Payment-renderField-label" style={{ fontSize: '12px', paddingBottom: '15px' }}>
+              <Field name="paymentMethod" component="input" type="radio" value="vbank" />{' '}무통장 입금
             </label>
             </div>
           </div>
-          <div className="Payment-renderField-label-wrapper" style={{ marginTop: '50px', paddingBottom: '27px' }}>
+          <div className="Payment-renderField-label-wrapper" style={{ marginTop: '80px', paddingBottom: '27px' }}>
             <Button
               type="submit"
               disabled={submitting}

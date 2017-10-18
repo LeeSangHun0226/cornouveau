@@ -45,8 +45,13 @@ class Complete extends Component {
           결제 내역
         </p>
         <div style={{ paddingTop: '30px', paddingBottom: '30px' }}>
+          <h3 style={{ textAlign: 'center' }}>
+            {
+              JSON.parse(paymentDetail).paymentMethod === 'vbank' ? '계좌번호 : 국민은행 616301-04-170877 코르누보' : ''
+            }
+          </h3>
           <h2 style={{ textAlign: 'center' }}>
-            결제가 완료되었습니다.
+            주문이 완료되었습니다.
           </h2>
         </div>
       </div>
