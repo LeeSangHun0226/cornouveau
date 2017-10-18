@@ -52,7 +52,7 @@ exports.savePayment = (req, res) => {
 };
 
 exports.onePaymentGet = (req, res) => {
-  const merchant_uid = req.params.merchant_uid;
+  const merchant_uid = req.params.uid;
 
   Payment.find({ merchant_uid }, (err, data) => {
     if (err) res.send({ err });
