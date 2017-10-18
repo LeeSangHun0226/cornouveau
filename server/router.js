@@ -20,7 +20,7 @@ module.exports = function (app) {
   ------------------------------------------------------------------------------*/
   apiRoutes.use('/payment', paymentRoutes);
 
-  // paymentRoutes.get('/', PaymentController.allPaymentsGet);
+  paymentRoutes.get('/', PaymentController.allPaymentsGet);
   paymentRoutes.get('/:uid', PaymentController.onePaymentGet);
   paymentRoutes.post('/', PaymentController.savePayment);
   paymentRoutes.put('/:uid', PaymentController.changePayment);

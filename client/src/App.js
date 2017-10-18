@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -25,58 +25,65 @@ import DamDetail from './routes/DamDetail';
 import Competibles from './routes/Competibles';
 import Competible from './routes/Competible';
 import Inquiry from './routes/Inquiry';
+import Admin from './routes/Admin';
 
 import Header from './components/Header';
 import Footer from './components/Footer/Footer';
 
-const App = () => (
-  <MuiThemeProvider>
-    <Provider store={store}>
-      <Router>
-        <div style={{ minHeight: '100%', position: 'relative' }}>
-          <Header />
-          <div>
-            <Switch>
-              <Route exact path="/" component={Home} />
+class App extends React.Component {
+  render() {
+    return (
+      <MuiThemeProvider>
+        <Provider store={store}>
+          <Router>
+            <div style={{ minHeight: '100%', position: 'relative' }}>
+              <Header />
+              <div>
+                <Switch>
+                  <Route exact path="/" component={Home} />
 
-              <Route exact path="/about" component={Cornouveau} />
-              <Route path="/about/cornouveau" component={Cornouveau} />
-              <Route path="/about/italian" component={Italian} />
-              <Route path="/about/news" component={News} />
+                  <Route exact path="/admin" component={Admin} />
 
-              <Route path="/campaign" component={Campaign} />
+                  <Route exact path="/about" component={Cornouveau} />
+                  <Route path="/about/cornouveau" component={Cornouveau} />
+                  <Route path="/about/italian" component={Italian} />
+                  <Route path="/about/news" component={News} />
 
-              <Route exact path="/gallery" component={Gallery} />
-              <Route path="/gallery/:galleryname" component={GalleryDetail} />
+                  <Route path="/campaign" component={Campaign} />
 
-              <Route exact path="/ourdog/sire" component={Sire} />
-              <Route path="/ourdog/sire/:sirename" component={SireDetail} />
+                  <Route exact path="/gallery" component={Gallery} />
+                  <Route path="/gallery/:galleryname" component={GalleryDetail} />
 
-              <Route exact path="/ourdog/dam" component={Dam} />
-              <Route path="/ourdog/dam/:damname" component={DamDetail} />
+                  <Route exact path="/ourdog/sire" component={Sire} />
+                  <Route path="/ourdog/sire/:sirename" component={SireDetail} />
 
-              <Route exact path="/adoptions" component={Adoptions} />
-              <Route path="/adoption/:adoptionName" component={Adoption} />
+                  <Route exact path="/ourdog/dam" component={Dam} />
+                  <Route path="/ourdog/dam/:damname" component={DamDetail} />
 
-              <Route exact path="/products" component={Products} />
-              <Route path="/product/:productname" component={Product} />
+                  <Route exact path="/adoptions" component={Adoptions} />
+                  <Route path="/adoption/:adoptionName" component={Adoption} />
 
-              <Route exact path="/products/competibles" component={Competibles} />
-              <Route path="/products/competible/:competiblename" component={Competible} />
+                  <Route exact path="/products" component={Products} />
+                  <Route path="/product/:productname" component={Product} />
 
-              <Route exact path="/products/inquiry" component={Inquiry} />
+                  <Route exact path="/products/competibles" component={Competibles} />
+                  <Route path="/products/competible/:competiblename" component={Competible} />
 
-              <Route exact path="/payment" component={Payment} />
-              <Route path="/payment/complete" component={Complete} />
+                  <Route exact path="/products/inquiry" component={Inquiry} />
 
-            </Switch>
-          </div>
-          <Footer />
-        </div>
-      </Router>
-    </Provider>
-  </MuiThemeProvider>
-);
+                  <Route exact path="/payment" component={Payment} />
+                  <Route path="/payment/complete" component={Complete} />
+
+                </Switch>
+              </div>
+              <Footer />
+            </div>
+          </Router>
+        </Provider>
+      </MuiThemeProvider>
+    );
+  }
+}
 
 export default App;
 

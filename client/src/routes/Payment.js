@@ -71,7 +71,7 @@ class Payment extends Component {
         merchant_uid,
         photo: productData.productData[0].titlePhoto,
       };
-
+      localStorage.setItem('merchant_uid', JSON.stringify(merchant_uid));
       axios({
         method: 'post',
         url: `http://${fetchServerConfig.ip}:4000/api/payment`,

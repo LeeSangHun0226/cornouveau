@@ -75,7 +75,7 @@ exports.changePayment = (req, res) => {
 
 exports.allPaymentsGet = (req, res) => {  
   Payment.find({}, (err, data) => {
-    if (err) console.log(req.err);
+    if (err) res.send({ err });
     return res.json(data);
   });
 };
