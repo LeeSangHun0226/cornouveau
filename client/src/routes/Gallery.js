@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
-import { DotLoader } from 'react-spinners';
+// import { DotLoader } from 'react-spinners';
 import axios from 'axios';
 import Modal from 'react-modal';
 import closedImage from '../images/close.png';

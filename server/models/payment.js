@@ -4,15 +4,22 @@ mongoose.Promise = require('bluebird');
 
 const Schema = mongoose.Schema;
 
-const Product = new Schema({
+const Payment = new Schema({
   userName: { type: String, required: true },
-  price: { type: Number, required: true },
-  amount: { type: Number },
-  titlePhoto: { type: String, required: true },
-  description: [{
-    photo: { type: String },
-    text: { type: String },
-  }],
+  userPhone: { type: String, required: true },
+  userEmail: { type: String, required: true },
+  shippingName: { type: String },
+  shippingPhone: { type: String },
+  address: { type: String, required: true },
+  paymentMethod: { type: String },
+  customerMessage: { type: String },
+  merchant_uid: { type: String },
+  productName: { type: String },
+  price: { type: Number },
+  qty: { type: Number },
+  size: { type: String },
+  totalPrice: { type: Number },
+  paymentSituation: { type: String },
 });
 
-module.exports = mongoose.model('Product', Product);
+module.exports = mongoose.model('Payment', Payment);

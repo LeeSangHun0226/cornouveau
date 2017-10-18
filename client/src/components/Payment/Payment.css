@@ -1,0 +1,40 @@
+.Payment-wrapper {
+  display: flex;
+  background-color: white;
+}
+
+.Payment-thumbnail {
+  /* margin-bottom: 10px; */
+}
+
+.Payment-content-wrapper {
+  /* width: 50%; */
+  float: left;
+  margin: auto;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.Payment-content-name {
+  /* font-size: 15px; */
+  color: dimgray;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.Payment-content-size {
+  font-size: 15px;
+}
+
+.Payment-content-qty {
+  font-size: 15px;
+}
+
+.Payment-content-price {
+ font-size: 15px;
+}
+
+.Payment-content-total {
+ font-size: 15px;
+}

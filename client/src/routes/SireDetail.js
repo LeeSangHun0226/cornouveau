@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
 import axios from 'axios';
-import priceImg from '../images/price.jpeg';
+// import priceImg from '../images/price.jpeg';
 import { fetchServerConfig } from '../config';
 // import './Product.css';
 

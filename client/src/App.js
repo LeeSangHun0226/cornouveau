@@ -1,11 +1,10 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
-import rootReducer from './store';
+import store from './store';
 import Home from './routes/Home';
 import Campaign from './routes/Campaign';
 import Gallery from './routes/Gallery';
@@ -29,8 +28,6 @@ import Competible from './routes/Competible';
 import Header from './components/Header';
 import Footer from './components/Footer/Footer';
 
-const store = createStore(rootReducer);
-
 const App = () => (
   <MuiThemeProvider>
     <Provider store={store}>
@@ -40,23 +37,24 @@ const App = () => (
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
+
               <Route exact path="/about" component={Cornouveau} />
               <Route path="/about/cornouveau" component={Cornouveau} />
               <Route path="/about/italian" component={Italian} />
               <Route path="/about/news" component={News} />
 
               <Route path="/campaign" component={Campaign} />
-              
+
               <Route exact path="/gallery" component={Gallery} />
               <Route path="/gallery/:galleryname" component={GalleryDetail} />
 
               <Route exact path="/ourdog/sire" component={Sire} />
               <Route path="/ourdog/sire/:sirename" component={SireDetail} />
-              
-              <Route exact path="/ourdog/dam" component={Dam} />
-              <Route exact path="/ourdog/dam/:damname" component={DamDetail} />
 
-              <Route path="/adoptions" component={Adoptions} />
+              <Route exact path="/ourdog/dam" component={Dam} />
+              <Route path="/ourdog/dam/:damname" component={DamDetail} />
+
+              <Route exact path="/adoptions" component={Adoptions} />
               <Route path="/adoption/:adoptionName" component={Adoption} />
 
               <Route exact path="/products" component={Products} />
@@ -67,6 +65,7 @@ const App = () => (
 
               <Route exact path="/payment" component={Payment} />
               <Route path="/payment/complete" component={Complete} />
+
             </Switch>
           </div>
           <Footer />

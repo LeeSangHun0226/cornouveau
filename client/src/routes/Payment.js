@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-modal';
 import DaumPostcode from 'react-daum-postcode';
 import axios from 'axios';
-import ProductDetail from '../components/Payment/ProductDetail';
+
+import { fetchServerConfig } from '../config';
+import ProductDetail from '../components/Product/ProductDetail';
 import './Payment.css';
 
 const IMP = window.IMP; // 생략가능
@@ -16,11 +19,14 @@ class Payment extends Component {
     modalIsOpen: false,
     isPaid: false,
     productData: '',
+    error: null,
+    paymentMethod: 'card',
   }
 
   componentDidMount() {
+    const productDetail = localStorage.getItem('productDetail');
     this.setState({
-      productData: this.props.location.state,
+      productData: JSON.parse(productDetail),
     });
   }
 
@@ -49,51 +55,88 @@ class Payment extends Component {
     });
   }
 
-  isPaid = (data) => {
-    console.log(data);
-    // axios.post('http://13.124.112.126:4000/api/payment', data)
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
+  isPaid = (paymentData) => {
+    const { productData } = this.state;
+    const totalPrice = productData.productData[0].price * Number(productData.productQty);
+    localStorage.setItem('paymentData', JSON.stringify(paymentData));
+    if (paymentData.paymentMethod === 'trans') {
+      alert('무통장 입금을 하시겠습니까?');
+      const merchant_uid = new Date().getTime();
+      // axios.post(`http://${fetchServerConfig.ip}:4000/api/payment/${merchant_uid}`,{
+      //   productData,
+      //   paymentData,
+      // })
+      //   .then((res) => {
+      //     console.log(res)
+      //   });
+
+      // axios.post
+      this.props.history.push({
+        pathname: '/payment/complete',
+        state: {
+          productData,
+          paymentData,
+        },
+      });
+      return false;
+    }
     IMP.request_pay({
       pg: 'nice', // version 1.1.0부터 지원.
-      pay_method: `${data.paymentMethod}`,
+      // pay_method: paymentData.paymentMethod,
+      pay_method: 'phone',
       merchant_uid: 'merchant_' + new Date().getTime(),
-      name: `${this.props.location.state.productData[0].name}`,
+      name: `${productData.productData[0].name}, ${productData.productQty}개, ${productData.productSize}`,
+      // amount: totalPrice,
       amount: 1000,
-      buyer_name: data.userName,
-      buyer_tel: data.userPhone,
-      buyer_email: data.userEmail,
-      buyer_addr: data.baseAddress + data.extraAddress,
-      buyer_postcode: data.postcode,
-      m_redirect_url: 'http://172.16.6.229:3000/gallery'
+      buyer_name: paymentData.userName,
+      buyer_tel: paymentData.userPhone,
+      buyer_email: paymentData.userEmail,
+      buyer_addr: paymentData.baseAddress + paymentData.extraAddress,
+      buyer_postcode: paymentData.postcode,
+      m_redirect_url: 'http://cornouveau.com/gallery',
     }, (rsp) => {
       if (rsp.success) {
-        var msg = '결제가 완료되었습니다.';
-        msg += '고유ID : ' + rsp.imp_uid;
-        msg += '상점 거래ID : ' + rsp.merchant_uid;
-        msg += '결제 금액 : ' + rsp.paid_amount;
-        msg += '카드 승인번호 : ' + rsp.apply_num;
+        let msg = '결제가 완료되었습니다.';
+        msg += `고유ID :  + ${rsp.imp_uid}`;
+        msg += `상점 거래ID :  + ${rsp.merchant_uid}`;
+        msg += `결제 금액 :  + ${rsp.paid_amount}`;
+        msg += `카드 승인번호 :  + ${rsp.apply_num}`;
         // axios.post('http://localhost:4000/api/payment')
         // .then((res) => {
-          this.props.history.push({
-            pathname: '/payment/complete',
-            state: {
-              productData: this.state.productData,
-              paymentData: data,
-            },
-          });
+        alert(msg);
+        const product = {
+          productName: rsp.name,
+          price: productData.productData[0].price,
+          qty: Number(productData.productQty),
+          size: productData.productSize,
+          paymentSituation: 'deliveryWaitig',
+        };
+        console.log(product);
+        axios.post(`http://${fetchServerConfig.ip}:4000/api/payment}`, {
+          paymentData,
+          product,
+        }).then(data => console.log(data))
+
+
+        this.props.history.push({
+          pathname: '/payment/complete',
+          state: {
+            productData,
+            paymentData,
+          },
+        });
       } else {
         // var msg = '결제에 실패하였습니다.';
         // msg += '에러내용 : ' + rsp.error_msg;
-        console.log(rsp, 'rsp')
+        console.log(rsp, 'rsp');
+        alert(rsp.error_msg);
       }
-      alert(msg);
     });
   }
 
-  renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-    <div className="Payment-renderField-wrapper">
+  renderField = ({ input, label, type, meta: { touched, error } }) => {
+    return (
+    <div className={error !== undefined ? "Payment-renderField-error-wrapper" : "Payment-renderField-wrapper"}>
       <div className="Payment-renderField-label-wrapper">
         <label className="Payment-renderField-label">
         {label}
@@ -102,19 +145,16 @@ class Payment extends Component {
       <div className="Payment-renderField-input">
         <input {...input} placeholder={label} type={type} style={{ width: '100%', height: '100%', outline: 'none' }} />
         {touched &&
-          ((error &&
-            <span>
+          (
+            (error &&
+            <span style={{ color: 'red', fontSize: '20px' }}>
               {error}
-            </span>) ||
-            (warning &&
-              <span>
-                {warning}
-              </span>)
+            </span>)         
           )
         }
       </div>
     </div>
-  )
+  )}
 
   renderPostcode = ({ input, label, type, meta: { touched, error, warning } }) => (
     <div className="Payment-renderField-wrapper">
@@ -142,7 +182,9 @@ class Payment extends Component {
   )
 
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
+    console.log(this.props);
+    const { handleSubmit, submitting } = this.props;
+    const productDetail = localStorage.getItem('productDetail');
     return (
       <div style={{}}>
         <form onSubmit={handleSubmit(this.handleSubmit)}>
@@ -150,7 +192,7 @@ class Payment extends Component {
             주문 정보
           </p>
           <ProductDetail
-            product={this.state.productData === '' ? this.props.location.state : this.state.productData}
+            product={this.state.productData === '' ? JSON.parse(productDetail) : this.state.productData}
           />
           <p className="Payment-info">
             주문자 정보
@@ -168,7 +210,7 @@ class Payment extends Component {
           <Field name="postcode" type="text" component={this.renderPostcode} label="배송지(address)" />
           <Field name="baseAddress" type="text" component={this.renderField} />
           <Field name="extraAddress" type="text" component={this.renderField} />
-          <Field name="shippingPhone" type="text" component={this.renderField} label="받는 분 번호(address no.)" />
+          <Field name="shippingPhone" type="text" component={this.renderField} label="받는 분 번호(addressee no.)" />
           <Field name="customerMessage" type="text" component={this.renderField} label="배송 메시지(order message)" />
           <div className="Payment-info">
           결제방법
@@ -179,7 +221,7 @@ class Payment extends Component {
               <Field name="paymentMethod" component="input" type="radio" value="card" />{' '}신용카드
             </label>
             <label className="Payment-renderField-label" style={{ fontSize: '12px', marginBottom: '15px' }}>
-             <Field name="paymentMethod" component="input" type="radio" value="trans" />{' '}무통장입금
+             <Field name="paymentMethod" component="input" type="radio" value="vbank" />{' '}무통장입금
             </label>
             </div>
           </div>
@@ -192,7 +234,7 @@ class Payment extends Component {
               결제
             </Button>
           </div>
-          <div style={{ paddingBottom: '50px', background: '#E0E0E0' }}>
+          <div style={{ paddingBottom: '25px', background: '#E0E0E0' }}>
           </div>
         </form>
         <Modal
@@ -235,35 +277,35 @@ const validate = (values) => {
   if (!values.userName) {
     errors.userName = 'Required';
   }
-  // if (!values.userPhone) {
-  //   errors.userPhone = 'Required';
-  // } else if (!/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i.test(values.userPhone)) {
-  //   errors.userPhone = 'Invalid phone address';
-  // }
-  // if (!values.userEmail) {
-  //   errors.userEmail = 'Required';
-  // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.userEmail)) {
-  //   errors.userEmail = 'Invalid email address';
-  // }
-  // if (!values.nonMemeberCode) {
-  //   errors.nonMemeberCode = 'Required';
-  // } else if (!/^[a-z0-9_]{4,15}$/i.test(values.nonMemeberCode)) {
-  //   errors.nonMemeberCode = 'Invalid nonMemberCode';
-  // }
-  // if (!values.shippingName) {
-  //   errors.shippingName = 'Required';
-  // }
-  // if (!values.baseAddress) {
-  //   errors.baseAddress = 'Required';
-  // }
-  // if (!values.shippingPhone) {
-  //   errors.shippingPhone = 'Required';
-  // } else if (!/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i.test(values.shippingPhone)) {
-  //   errors.shippingPhone = 'Invalid phone address';
-  // }
-  // if (!values.paymentMethod) {
-  //   errors.paymentMethod = 'Required';
-  // }
+  if (!values.userPhone) {
+    errors.userPhone = 'Required';
+  } else if (!/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i.test(values.userPhone)) {
+    errors.userPhone = 'Invalid phone address';
+  }
+  if (!values.userEmail) {
+    errors.userEmail = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.userEmail)) {
+    errors.userEmail = 'Invalid email address';
+  }
+  if (!values.nonMemeberCode) {
+    errors.nonMemeberCode = 'Required';
+  } else if (!/^[a-z0-9_]{4,15}$/i.test(values.nonMemeberCode)) {
+    errors.nonMemeberCode = 'Invalid nonMemberCode';
+  }
+  if (!values.shippingName) {
+    errors.shippingName = 'Required';
+  }
+  if (!values.baseAddress) {
+    errors.baseAddress = 'Required';
+  }
+  if (!values.shippingPhone) {
+    errors.shippingPhone = 'Required';
+  } else if (!/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i.test(values.shippingPhone)) {
+    errors.shippingPhone = 'Invalid phone address';
+  }
+  if (!values.paymentMethod) {
+    errors.paymentMethod = 'Required';
+  }
   return errors;
 };
 
@@ -275,9 +317,19 @@ const warn = (values) => {
   return warnings;
 };
 
+const mapStateToProps = state => ({
+  productDetail: state.productReducer.productDetail,
+});
+
+
+Payment = connect(
+  mapStateToProps,
+)(Payment);
+
 
 export default reduxForm({
   form: 'payment',
   validate,
   warn,
+  mapStateToProps,
 })(Payment);

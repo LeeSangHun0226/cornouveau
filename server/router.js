@@ -5,6 +5,7 @@ const SireController = require('./controllers/sire');
 const DamController = require('./controllers/dam');
 const GalleryController = require('./controllers/gallery');
 const CompetibleController = require('./controllers/competible');
+const PaymentController = require('./controllers/payment');
 
 module.exports = function (app) {
   const apiRoutes = express.Router();
@@ -13,9 +14,17 @@ module.exports = function (app) {
   const damRoutes = express.Router();
   const galleryRoutes = express.Router();
   const competibleRoutes = express.Router();
+  const paymentRoutes = express.Router();
   /*------------------------------------------------------------------------------
     PRODUCT ROUTE
   ------------------------------------------------------------------------------*/
+  apiRoutes.use('/payment', paymentRoutes);
+
+  paymentRoutes.get('/', PaymentController.allPaymentsGet);
+  paymentRoutes.get('/:uid', PaymentController.onePaymentGet);
+  paymentRoutes.post('/', PaymentController.savePayment);
+  paymentRoutes.put('/:uid', PaymentController.changePayment);
+  
   apiRoutes.use('/product', productRoutes);
 
   productRoutes.get('/', ProductController.allProductsGet);

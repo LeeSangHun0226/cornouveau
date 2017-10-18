@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Image, Button } from 'react-bootstrap';
 import axios from 'axios';
 import priceImg from '../images/price.jpeg';
 import { fetchServerConfig } from '../config';
+import { productShowDetail } from '../actions/product_actions';
 import './Product.css';
 
 class Product extends Component {
@@ -36,6 +38,8 @@ class Product extends Component {
   }
 
   handleSubmit = () => {
+    localStorage.setItem('productDetail', JSON.stringify(this.state));
+    this.props.productShowDetail(this.state);
     this.props.history.push({
       pathname: '/payment',
       state: {
@@ -89,6 +93,7 @@ class Product extends Component {
             <Image
               src={priceImg}
               responsive
+              style={{ margin: 'auto', width: '90%' }}
             />
             <div />
             <Button
@@ -110,7 +115,7 @@ class Product extends Component {
 
   renderProductBox = () => {
     if (this.state.productData.length > 0) {
-      const { titlePhoto, name } = this.state.productData[0];
+      const { titlePhoto } = this.state.productData[0];
       return (
         <div className="product-imgBox">
           <Image
@@ -156,7 +161,7 @@ class Product extends Component {
         </div>
         <div>
           <Image
-            src={'https://s3.ap-northeast-2.amazonaws.com/cornouveau/6.product/AS%EC%9D%B4%EB%AF%B8%EC%A7%80(%EB%AA%A8%EB%93%A0%EC%83%81%ED%92%88).jpg'}
+            src={'https://s3.ap-northeast-2.amazonaws.com/cornouveau/6.product/2017-10-11%EC%83%81%ED%92%88%EC%84%B8%EB%B6%80AS%EC%9D%B4%EB%AF%B8%EC%A7%80(%EB%AA%A8%EB%93%A0%EC%83%81%ED%92%88).jpg'}
             responsive
           />
         </div>
@@ -166,4 +171,8 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default connect(
+  null, {
+    productShowDetail,
+  },
+)(Product);
