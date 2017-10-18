@@ -66,7 +66,7 @@ class Inquiry extends Component {
   )
 
   showTable = () => {
-    if (this.state.isInquiried) {
+    if (this.state.isInquiried && this.state.paymentSituation !== 'paymentCancle') {
       return (
         <div>
           <ProductDetail product={this.state.product} />
@@ -80,7 +80,16 @@ class Inquiry extends Component {
             : false
           }
         </div>
-      )
+      );
+    }
+    if (this.state.isInquiried && this.state.paymentSituation === 'paymentCancle') {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <h2>
+            주문정보가 없습니다.
+          </h2>
+        </div>
+      );
     }
     return false;
   }
