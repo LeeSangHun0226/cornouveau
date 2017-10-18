@@ -62,6 +62,16 @@ exports.onePaymentGet = (req, res) => {
   });
 };
 
+exports.changePayment = (req, res) => {
+  console.log(req.params, req.body)
+  const merchant_uid = req.params.uid;
+  const paymentSituation = req.body.paymentSituation;
+
+  Payment.find({ merchant_uid }, { $set: { paymentSituation } }, (err, data) => {
+    if (err) res.send({ err });
+    return res.json(data);
+  });
+};
 
 exports.allPaymentsGet = (req, res) => {  
   Payment.find({}, (err, data) => {

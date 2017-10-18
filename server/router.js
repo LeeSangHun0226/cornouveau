@@ -23,7 +23,7 @@ module.exports = function (app) {
   // paymentRoutes.get('/', PaymentController.allPaymentsGet);
   paymentRoutes.get('/:uid', PaymentController.onePaymentGet);
   paymentRoutes.post('/', PaymentController.savePayment);
-  // paymentRoutes.put('/:uid', PaymentController.changePayment);
+  paymentRoutes.put('/:uid', PaymentController.changePayment);
   
   apiRoutes.use('/product', productRoutes);
 
