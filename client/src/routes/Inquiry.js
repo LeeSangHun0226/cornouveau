@@ -62,6 +62,7 @@ class Inquiry extends Component {
       paymentSituation: 'paymentCancle',
     })
     .then(data => console.log(data))
+    .catch(err => console.log(err))
   )
 
   showTable = () => {
@@ -74,7 +75,7 @@ class Inquiry extends Component {
             this.state.paymentSituation !== 'paymentComplete'
             ?
               <div style={{ textAlign: 'center' }}>
-                <Button style={{ textAlign: 'center' }} onClick={this.paymentCancle()}>주문취소</Button>
+                <Button style={{ textAlign: 'center' }} onClick={this.paymentCancle}>주문취소</Button>
               </div>
             : false
           }
