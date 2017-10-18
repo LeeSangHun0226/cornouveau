@@ -26,7 +26,7 @@ exports.savePayment = (req, res) => {
 
   const address = extraAddress ? `(${postcode}) ${baseAddress} ${extraAddress}` : `(${postcode} ${baseAddress}`;
   const totalPrice = price * qty;
-  const customerMessage = customerMessage ? customerMessage : '.';
+  const orderMessage = customerMessage ? customerMessage : '.';
 
   const payment = new Payment({
     userName,
@@ -35,7 +35,7 @@ exports.savePayment = (req, res) => {
     shippingName,
     shippingPhone,
     paymentMethod,
-    customerMessage,
+    customerMessage: orderMessage,
     merchant_uid,
     address,
     productName,
