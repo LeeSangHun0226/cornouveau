@@ -20,6 +20,7 @@ const Payment = new Schema({
   size: { type: String },
   totalPrice: { type: Number },
   paymentSituation: { type: String },
+  photo: { type: String },
 });
 
 module.exports = mongoose.model('Payment', Payment);

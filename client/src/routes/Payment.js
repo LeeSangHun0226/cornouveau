@@ -112,6 +112,7 @@ class Payment extends Component {
           size: productData.productSize,
           paymentSituation: 'deliveryWaitig',
           merchant_uid: rsp.merchant_uid,
+          photo: productData.productData[0].titlePhoto,
         };
         axios({
           method: 'post',
