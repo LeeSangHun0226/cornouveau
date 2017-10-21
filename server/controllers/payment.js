@@ -64,10 +64,10 @@ exports.savePayment = (req, res) => {
           }],
         },
       })
+      .catch(err => res.send(err))
       .then(() => {
         return res.json(data);
-      })
-      .catch(err => res.send(err));
+      });
     }
 
     res.json(data);
