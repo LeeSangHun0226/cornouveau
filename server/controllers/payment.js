@@ -59,7 +59,7 @@ exports.savePayment = (req, res) => {
           body: '테스트',
           sendNo: '01064130752',
           recipientList: [{
-            recipientNo: res.data.userPhone,
+            recipientNo: data.userPhone,
           }],
         },
       })
