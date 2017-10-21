@@ -14,8 +14,8 @@ const Payment = (props) => {
     <div className="Payment-wrapper">
       <div className="Payment-content-wrapper">
         <p className="Payment-content-size">
-          <h3>*주문조회시 반드시 필요합니다*</h3>
-          <p>주문번호(merchant_uid) : {merchant_uid}</p>
+          <h3>*주문번호는 주문조회시 반드시 필요합니다*</h3>
+          <p style={{ backgroundColor: '#FFFF00' }}>주문번호(merchant_uid) : {merchant_uid}</p>
         </p>
         <p className="Payment-content-size">
           <p>주문자(name) : {userName}</p>

@@ -67,9 +67,12 @@ exports.changePayment = (req, res) => {
   const merchant_uid = req.params.uid;
   const paymentSituation = req.body.paymentSituation;
 
-  Payment.update({ merchant_uid }, { $set: { paymentSituation } }, (err, data) => {
-    if (err) res.send({ err });
-    return res.json(data);
+  Payment.update({ merchant_uid }, { $set: { paymentSituation } })
+  .then(() => {
+    Payment.find({}, (err, data) => {
+      if (err) res.send({ err });
+      return res.json(data);
+    });
   });
 };
 

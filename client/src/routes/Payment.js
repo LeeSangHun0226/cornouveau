@@ -122,7 +122,7 @@ class Payment extends Component {
           price: productData.productData[0].price,
           qty: Number(productData.productQty),
           size: productData.productSize,
-          paymentSituation: 'deliveryWaitig',
+          paymentSituation: '배송대기중',
           merchant_uid: rsp.merchant_uid,
           photo: productData.productData[0].titlePhoto,
         };

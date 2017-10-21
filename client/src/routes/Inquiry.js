@@ -59,20 +59,20 @@ class Inquiry extends Component {
 
   paymentCancle = () => (
     axios.put(`http://${fetchServerConfig.ip}:4000/api/payment/${this.state.merchant_uid}`, {
-      paymentSituation: 'paymentCancle',
+      paymentSituation: '결제취소',
     })
     .then(data => console.log(data))
     .catch(err => console.log(err))
   )
 
   showTable = () => {
-    if (this.state.isInquiried && this.state.paymentSituation !== 'paymentCancle') {
+    if (this.state.isInquiried && this.state.paymentSituation !== '결제취소') {
       return (
         <div>
           <ProductDetail product={this.state.product} />
           <Payment payment={this.state.payment} merchant_uid={this.state.merchant_uid} />
           {
-            this.state.paymentSituation !== 'paymentComplete'
+            this.state.paymentSituation !== '결제취소'
             ?
               <div style={{ textAlign: 'center' }}>
                 <Button style={{ textAlign: 'center' }} onClick={this.paymentCancle}>주문취소</Button>
@@ -82,7 +82,7 @@ class Inquiry extends Component {
         </div>
       );
     }
-    if (this.state.isInquiried && this.state.paymentSituation === 'paymentCancle') {
+    if (this.state.isInquiried && this.state.paymentSituation === '결제취소') {
       return (
         <div style={{ textAlign: 'center' }}>
           <h2>
