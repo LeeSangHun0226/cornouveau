@@ -51,7 +51,7 @@ exports.savePayment = (req, res) => {
 
   return payment.save()
   .then((data) => {
-    if (data.paymentMethod === 'vBank') {
+    if (data.paymentMethod === 'vbank') {
       axios({
         method: 'post',
         url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
