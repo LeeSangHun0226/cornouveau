@@ -52,22 +52,25 @@ exports.savePayment = (req, res) => {
   return payment.save()
   .then((data) => {
     if (data.paymentMethod === 'vbank') {
+      const smsBody = `주문이 접수되었습니다. 주문번호는 ${merchant_uid}입니다`;
       axios({
         method: 'post',
         url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
         data: {
-          body: '테스트',
+          body: smsBody,
           sendNo: '01064130752',
           recipientList: [{
             recipientNo: data.userPhone,
           }],
         },
       })
-      .then(() => res.json(data))
-      .catch(err => console.log(err));
+      .then(() => {
+        return res.json(data);
+      })
+      .catch(err => res.send(err));
     }
 
-    res.json(data);
+    return res.json(data);
   })
   .catch(err => res.send({ err }));
 };
