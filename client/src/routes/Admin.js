@@ -74,7 +74,11 @@ class Admin extends Component {
     return axios.put(`http://${fetchServerConfig.ip}:4000/api/payment/${paymentId}`, {
       paymentSituation,
     })
-    .then(data => console.log(data))
+    .then((paymentData) => {
+      this.setState({
+        paymentData: paymentData.data,
+      });
+    })
     .catch(err => console.log(err));
   }
 
@@ -91,9 +95,9 @@ class Admin extends Component {
         <div style={{ margin: '50px' }}>
           <div>
             <ButtonToolbar style={{ margin: '20px' }}>
-              <Button onClick={() => this.changePaymentSituation('입금완료')}>입금 완료</Button>
-              <Button onClick={() => this.changePaymentSituation('배송대기중')}>배송 대기중</Button>
-              <Button onClick={() => this.changePaymentSituation('결제완료')}>결제 완료</Button>
+              <Button bsStyle="warning" onClick={() => this.changePaymentSituation('배송대기중')}>배송 대기중</Button>
+              <Button bsStyle="primary" onClick={() => this.changePaymentSituation('배송완료')}>배송 완료</Button>
+              <Button bsStyle="danger"onClick={() => this.changePaymentSituation('결제취소')}>결제 취소</Button>
             </ButtonToolbar>
           </div>
           <div>

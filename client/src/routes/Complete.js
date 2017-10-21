@@ -40,6 +40,7 @@ class Complete extends Component {
         <Payment
           payment={paymentData === '' ? JSON.parse(paymentDetail) : paymentData}
           merchant_uid={merchant_uid === null ? JSON.parse(merchantDetail) : merchant_uid}
+          type="complete"
         />
         <p className="Payment-info">
           결제 내역

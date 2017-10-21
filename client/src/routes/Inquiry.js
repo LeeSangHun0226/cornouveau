@@ -35,6 +35,7 @@ class Inquiry extends Component {
         totalAddress: res.data[0].address,
         paymentMethod: res.data[0].paymentMethod,
         customerMessage: res.data[0].customerMessage,
+        paymentSituation: res.data[0].paymentSituation,
       };
 
       const product = {

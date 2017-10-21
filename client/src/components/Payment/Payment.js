@@ -4,8 +4,8 @@ import './Payment.css';
 
 const Payment = (props) => {
   console.log(props)
-  const { totalAddress, userName, userPhone, userEmail, shippingName, shippingPhone, baseAddress, extraAddress, paymentMethod, customerMessage } = props.payment;
-  const { merchant_uid } = props;
+  const { totalAddress, userName, userPhone, userEmail, shippingName, shippingPhone, baseAddress, extraAddress, paymentMethod, customerMessage, paymentSituation } = props.payment;
+  const { merchant_uid, type } = props;
   const orderMessage = customerMessage ? customerMessage : '배송 메세지가 없습니다';
   const validateAddress = extraAddress ? baseAddress + extraAddress : baseAddress;
   const address = totalAddress ? totalAddress : validateAddress;
@@ -13,8 +13,11 @@ const Payment = (props) => {
   return (
     <div className="Payment-wrapper">
       <div className="Payment-content-wrapper">
+        {
+          type === 'complete' ? false : <h2 style={{ backgroundColor: '#FFFF00' }}>주문상황: {paymentSituation}</h2>
+        }
+        <h3>*주문번호는 주문조회시 반드시 필요합니다*</h3>
         <p className="Payment-content-size">
-          <h3>*주문번호는 주문조회시 반드시 필요합니다*</h3>
           <p style={{ backgroundColor: '#FFFF00' }}>주문번호(merchant_uid) : {merchant_uid}</p>
         </p>
         <p className="Payment-content-size">

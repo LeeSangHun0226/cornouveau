@@ -10,7 +10,11 @@ const fetchServerConfig = {
   ip: '13.124.112.126',
 };
 
-export { appConfig, fetchServerConfig };
+const smsAppKeys = {
+  key: 'TbO1RLyAq4WwOBhD',
+}
+
+export { appConfig, fetchServerConfig, smsAppKeys };
 
 // {
 //   "region": "us-east-2",

@@ -1,3 +1,4 @@
+const axios = require('axios');
 const Payment = require('../models/payment');
 
 exports.savePayment = (req, res) => {
@@ -49,7 +50,25 @@ exports.savePayment = (req, res) => {
   });
 
   return payment.save()
-  .then(data => res.json(data))
+  .then((data) => {
+    if (data.paymentMethod === 'vBank') {
+      axios({
+        method: 'post',
+        url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
+        data: {
+          body: '테스트',
+          sendNo: '01064130752',
+          recipientList: [{
+            recipientNo: res.data.userPhone,
+          }],
+        },
+      })
+      .then(() => res.json(data))
+      .catch(err => console.log(err));
+    }
+
+    res.json(data);
+  })
   .catch(err => res.send({ err }));
 };
 

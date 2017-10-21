@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 import DaumPostcode from 'react-daum-postcode';
 import axios from 'axios';
 
-import { fetchServerConfig } from '../config';
+import { fetchServerConfig, smsAppKeys } from '../config';
 import ProductDetail from '../components/Product/ProductDetail';
 import './Payment.css';
 
@@ -59,6 +59,7 @@ class Payment extends Component {
     const { productData } = this.state;
     const totalPrice = productData.productData[0].price * Number(productData.productQty);
     localStorage.setItem('paymentData', JSON.stringify(paymentData));
+
     if (paymentData.paymentMethod === 'vbank') {
       alert('무통장 입금을 하시겠습니까?');
       const merchant_uid = new Date().getTime();
@@ -80,18 +81,20 @@ class Payment extends Component {
           product,
         },
       })
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
-
-      this.props.history.push({
-        pathname: '/payment/complete',
-        state: {
-          productData,
-          paymentData,
-        },
-      });
+      .then(() => {
+        this.props.history.push({
+          pathname: '/payment/complete',
+          state: {
+            productData,
+            paymentData,
+          },
+        });
+      })
+      .catch(err => console.log(err));
+      
       return false;
     }
+
     IMP.request_pay({
       pg: 'nice', // version 1.1.0부터 지원.
       pay_method: paymentData.paymentMethod,
@@ -109,12 +112,9 @@ class Payment extends Component {
     }, (rsp) => {
       if (rsp.success) {
         let msg = '결제가 완료되었습니다.';
-        msg += `고유ID :  + ${rsp.imp_uid}`;
-        msg += `상점 거래ID :  + ${rsp.merchant_uid}`;
         msg += `결제 금액 :  + ${rsp.paid_amount}`;
         msg += `카드 승인번호 :  + ${rsp.apply_num}`;
-        // axios.post('http://localhost:4000/api/payment')
-        // .then((res) => {
+        msg += `주문 번호 : +${rsp.merchant_uid}`;
         alert(msg);
         localStorage.setItem('merchant_uid', JSON.stringify(rsp.merchant_uid));
         const product = {
