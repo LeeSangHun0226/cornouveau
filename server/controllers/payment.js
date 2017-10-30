@@ -58,7 +58,7 @@ exports.savePayment = (req, res) => {
         url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
         data: {
           body: smsBody,
-          sendNo: '01062889557',
+          sendNo: '01064130752',
           recipientList: [{
             recipientNo: data.userPhone,
           }, {
@@ -78,7 +78,7 @@ exports.savePayment = (req, res) => {
       url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
       data: {
         body: smsBody,
-        sendNo: '01062889557',
+        sendNo: '01064130752',
         recipientList: [{
           recipientNo: '01062889557',
         }],
@@ -116,9 +116,13 @@ exports.changePayment = (req, res) => {
 };
 
 exports.allPaymentsGet = (req, res) => {  
-  Payment.find({}, (err, data) => {
-    if (err) res.send({ err });
-    return res.json(data);
-  });
+  return Payment.find({})
+    .sort({
+      createdAt: -1,
+    })
+    .then((data) => {
+      return res.json(data);
+    })
+    .catch(err => res.send({ err }));
 };
 

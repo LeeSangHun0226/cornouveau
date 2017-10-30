@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { fetchServerConfig } from '../config';
 import Payment from '../components/Payment/Payment';
 import ProductDetail from '../components/Product/ProductDetail';
