@@ -21,6 +21,8 @@ const Payment = new Schema({
   totalPrice: { type: Number },
   paymentSituation: { type: String },
   photo: { type: String },
+}, {
+  timestamps: true,
 });
 
 module.exports = mongoose.model('Payment', Payment);

@@ -15,7 +15,6 @@ class SireDetail extends Component {
     const { sirename } = this.props.match.params;
     axios.get(`http://${fetchServerConfig.ip}:4000/api/sire/${sirename}`)
       .then((res) => {
-        console.log(res);
         this.setState({
           data: res.data[0].subImage,
         });

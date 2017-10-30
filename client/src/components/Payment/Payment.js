@@ -3,7 +3,6 @@ import { Image } from 'react-bootstrap';
 import './Payment.css';
 
 const Payment = (props) => {
-  console.log(props)
   const { totalAddress, userName, userPhone, userEmail, shippingName, shippingPhone, baseAddress, extraAddress, paymentMethod, customerMessage, paymentSituation } = props.payment;
   const { merchant_uid, type } = props;
   const orderMessage = customerMessage ? customerMessage : '배송 메세지가 없습니다';

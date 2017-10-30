@@ -33,7 +33,6 @@ class GalleryComponent extends Component {
   componentDidMount() {
     axios.get(`http://${fetchServerConfig.ip}:4000/api/gallery`)
       .then((res) => {
-        console.log(res);
         this.setState({
           data: res.data,
           loading: false,

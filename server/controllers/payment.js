@@ -58,9 +58,11 @@ exports.savePayment = (req, res) => {
         url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
         data: {
           body: smsBody,
-          sendNo: '01064130752',
+          sendNo: '01062889557',
           recipientList: [{
             recipientNo: data.userPhone,
+          }, {
+            recipientNo: '01062889557',
           }],
         },
       })
@@ -70,7 +72,22 @@ exports.savePayment = (req, res) => {
       .catch(err => res.send(err));
     }
 
-    return res.json(data);
+    const smsBody = `주문이 접수되었습니다. 주문번호는 ${merchant_uid}입니다. -코르누보`;
+    return axios({
+      method: 'post',
+      url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
+      data: {
+        body: smsBody,
+        sendNo: '01062889557',
+        recipientList: [{
+          recipientNo: '01062889557',
+        }],
+      },
+    })
+    .then(() => {
+      return res.json(data);
+    })
+    .catch(err => res.send(err));
   })
   .catch(err => res.send({ err }));
 };

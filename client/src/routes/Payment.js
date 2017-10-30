@@ -47,7 +47,6 @@ class Payment extends Component {
   }
 
   handleAddress = (data) => {
-    console.log(data);
     this.props.change('baseAddress', data.address);
     this.props.change('postcode', data.postcode);
     this.setState({
@@ -71,6 +70,7 @@ class Payment extends Component {
         paymentSituation: '입금대기중',
         merchant_uid,
         photo: productData.productData[0].titlePhoto,
+        // date: new Date().toString(),
       };
       localStorage.setItem('merchant_uid', JSON.stringify(merchant_uid));
       axios({
@@ -125,6 +125,7 @@ class Payment extends Component {
           paymentSituation: '배송대기중',
           merchant_uid: rsp.merchant_uid,
           photo: productData.productData[0].titlePhoto,
+          // date: new Date().toString(),
         };
         axios({
           method: 'post',
@@ -148,7 +149,6 @@ class Payment extends Component {
       } else {
         // var msg = '결제에 실패하였습니다.';
         // msg += '에러내용 : ' + rsp.error_msg;
-        console.log(rsp, 'rsp');
         alert(rsp.error_msg);
       }
     });
@@ -202,7 +202,6 @@ class Payment extends Component {
   )
 
   render() {
-    console.log(this.props);
     const { handleSubmit, submitting } = this.props;
     const productDetail = localStorage.getItem('productDetail');
     return (

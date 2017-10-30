@@ -13,7 +13,6 @@ class DamDetail extends Component {
     const { damname } = this.props.match.params;
     axios.get(`http://${fetchServerConfig.ip}:4000/api/dam/${damname}`)
       .then((res) => {
-        console.log(res)
         this.setState({
           data: res.data[0].subImage,
         });

@@ -13,7 +13,6 @@ class GalleryDetail extends Component {
     const { galleryname } = this.props.match.params;
     axios.get(`http://${fetchServerConfig.ip}:4000/api/gallery/${galleryname}`)
       .then((res) => {
-        console.log(res)
         this.setState({
           data: res.data,
         });
@@ -32,7 +31,6 @@ class GalleryDetail extends Component {
   )
 
   render() {
-    console.log('??')
     return (
       <div>
         {this.renderGalleryDetail()}

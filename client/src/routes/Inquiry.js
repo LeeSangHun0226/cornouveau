@@ -25,7 +25,6 @@ class Inquiry extends Component {
     const { merchant_uid } = this.state;
     axios.get(`http://${fetchServerConfig.ip}:4000/api/payment/${merchant_uid}`)
     .then((res) => {
-      console.log(res.data)
       const payment = {
         userName: res.data[0].userName,
         userPhone: res.data[0].userPhone,
