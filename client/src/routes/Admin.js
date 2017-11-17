@@ -109,8 +109,8 @@ class Admin extends Component {
               exportCSV
               selectRow={selectRow}
             >
-              <TableHeaderColumn dataField="createdAt" isKey >주문시각</TableHeaderColumn>
               <TableHeaderColumn dataField="merchant_uid" isKey >주문번호</TableHeaderColumn>
+              <TableHeaderColumn dataField="createdAt" dataSort >주문시각</TableHeaderColumn>
               <TableHeaderColumn dataField="productName" dataSort>상품 이름</TableHeaderColumn>
               <TableHeaderColumn dataField="userName" dataSort>주문자</TableHeaderColumn>
               <TableHeaderColumn dataField="userPhone" dataSort>주문자 연락처</TableHeaderColumn>

@@ -159,12 +159,6 @@ class Product extends Component {
           {this.renderProductBox()}
           {this.renderPaymentBox()}
         </div>
-        <div>
-          <Image
-            src={'https://s3.ap-northeast-2.amazonaws.com/cornouveau/6.product/2017-10-11%EC%83%81%ED%92%88%EC%84%B8%EB%B6%80AS%EC%9D%B4%EB%AF%B8%EC%A7%80(%EB%AA%A8%EB%93%A0%EC%83%81%ED%92%88).jpg'}
-            responsive
-          />
-        </div>
         {this.renderDetailBox()}
       </div>
     );

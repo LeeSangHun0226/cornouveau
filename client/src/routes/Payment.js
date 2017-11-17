@@ -301,7 +301,7 @@ const validate = (values) => {
   }
   if (!values.userPhone) {
     errors.userPhone = 'Required';
-  } else if (!/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i.test(values.userPhone)) {
+  } else if (!/^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/i.test(values.userPhone)) {
     errors.userPhone = 'Invalid phone address';
   }
   if (!values.userEmail) {

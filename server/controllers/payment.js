@@ -58,7 +58,7 @@ exports.savePayment = (req, res) => {
         url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
         data: {
           body: smsBody,
-          sendNo: '01064130752',
+          sendNo: '01062889557',
           recipientList: [{
             recipientNo: data.userPhone,
           }, {
@@ -78,7 +78,7 @@ exports.savePayment = (req, res) => {
       url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
       data: {
         body: smsBody,
-        sendNo: '01064130752',
+        sendNo: '01062889557',
         recipientList: [{
           recipientNo: '01062889557',
         }],
