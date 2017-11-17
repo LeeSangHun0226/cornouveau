@@ -6,6 +6,7 @@ const DamController = require('./controllers/dam');
 const GalleryController = require('./controllers/gallery');
 const CompetibleController = require('./controllers/competible');
 const PaymentController = require('./controllers/payment');
+const CampaignController = require('./controllers/campaign');
 
 module.exports = function (app) {
   const apiRoutes = express.Router();
@@ -15,6 +16,7 @@ module.exports = function (app) {
   const galleryRoutes = express.Router();
   const competibleRoutes = express.Router();
   const paymentRoutes = express.Router();
+  const campaignRoutes = express.Router();
   /*------------------------------------------------------------------------------
     PRODUCT ROUTE
   ------------------------------------------------------------------------------*/
@@ -36,6 +38,12 @@ module.exports = function (app) {
   competibleRoutes.get('/', CompetibleController.allCompetiblesGet);
   competibleRoutes.get('/:competiblename', CompetibleController.oneCompetibleGet);
   competibleRoutes.post('/', CompetibleController.saveCompetible);
+
+  apiRoutes.use('/campaign', campaignRoutes);
+
+  campaignRoutes.get('/', CampaignController.allCampaignGet);
+  campaignRoutes.get('/:id', CampaignController.oneCampaignGet);
+  campaignRoutes.post('/', CampaignController.saveCampaign);
 
   apiRoutes.use('/sire', sireRoutes);
 
