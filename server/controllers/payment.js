@@ -61,10 +61,16 @@ exports.savePayment = (req, res) => {
           sendNo: '01062889557',
           recipientList: [{
             recipientNo: '01062889557',
-          }, 
+          },
+          {
+            recipientNo: '01038881645',
+          },
+          {
+            recipientNo: '01062889557',
+          },
           {
             recipientNo: data.userPhone,
-          }
+          },
         ],
         },
       })

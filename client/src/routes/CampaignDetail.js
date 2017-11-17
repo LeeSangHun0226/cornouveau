@@ -12,8 +12,8 @@ class CampaignDetail extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params)
-    axios.get(`http://${fetchServerConfig.ip}:4000/api/sire/${sirename}`)
+    const { id } = this.props.match.params;
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/campaign/${id}`)
       .then((res) => {
         this.setState({
           data: res.data[0].subImage,

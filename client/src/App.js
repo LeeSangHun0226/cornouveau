@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from './store';
 import Home from './routes/Home';
 import Campaign from './routes/Campaign';
+import CampaignDetail from './routes/CampaignDetail';
 import Gallery from './routes/Gallery';
 import GalleryDetail from './routes/GalleryDetail';
 import Adoptions from './routes/Adoptions';
@@ -49,7 +50,8 @@ class App extends React.Component {
                   <Route path="/about/italian" component={Italian} />
                   <Route path="/about/news" component={News} />
 
-                  <Route path="/campaign" component={Campaign} />
+                  <Route exact path="/campaign" component={Campaign} />
+                  <Route path="/campaign/:id" component={CampaignDetail} />
 
                   <Route exact path="/gallery" component={Gallery} />
                   <Route path="/gallery/:galleryname" component={GalleryDetail} />

@@ -235,7 +235,7 @@ class Payment extends Component {
           결제방법
           </div>
           <div className="Payment-renderField-wrapper">
-            <div className="Payment-renderField-label-wrapper" style={{ display: 'block' }}>
+            <div className="Payment-renderField-label-method-wrapper" style={{ display: 'block' }}>
             <label className="Payment-renderField-label" style={{ fontSize: '12px', marginBottom: '15px', marginTop: '15px' }}>
               <Field name="paymentMethod" component="input" type="radio" value="card" />{' '}신용카드
             </label>

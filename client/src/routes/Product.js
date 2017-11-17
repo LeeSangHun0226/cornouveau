@@ -152,10 +152,8 @@ class Product extends Component {
 
   render() {
     return (
-      <div style={{
-      }}
-      >
-        <div style={{ display: 'flex', flex: 1 }}>
+      <div>
+        <div className="product">
           {this.renderProductBox()}
           {this.renderPaymentBox()}
         </div>
