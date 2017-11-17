@@ -56,12 +56,12 @@ exports.savePayment = (req, res) => {
       const smsBody = `주문이 접수되었습니다. 주문번호는 ${merchant_uid}입니다. -코르누보`;
       return axios({
         method: 'post',
-        url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/TbO1RLyAq4WwOBhD/sender/sms`,
+        url: `https://api-sms.cloud.toast.com/sms/v2.0/appKeys/BcnfWoI1esEplKe6/sender/sms`,
         data: {
           body: smsBody,
           sendNo: '01062889557',
           recipientList: [{
-            recipientNo: '01064130752,
+            recipientNo: data.userPhone,
           }, 
           // {
           //   recipientNo: '01062889557',
