@@ -61,10 +61,12 @@ exports.savePayment = (req, res) => {
           body: smsBody,
           sendNo: '01062889557',
           recipientList: [{
-            recipientNo: data.userPhone,
-          }, {
-            recipientNo: '01062889557',
-          }],
+            recipientNo: '01064130752,
+          }, 
+          // {
+          //   recipientNo: '01062889557',
+          // }
+        ],
         },
       })
       .then(() => {
