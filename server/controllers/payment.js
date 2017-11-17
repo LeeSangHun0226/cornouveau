@@ -52,7 +52,6 @@ exports.savePayment = (req, res) => {
   return payment.save()
   .then((data) => {
     if (data.paymentMethod === 'vbank') {
-      console.log(data)
       const smsBody = `주문이 접수되었습니다. 주문번호는 ${merchant_uid}입니다. -코르누보`;
       return axios({
         method: 'post',
@@ -61,11 +60,11 @@ exports.savePayment = (req, res) => {
           body: smsBody,
           sendNo: '01062889557',
           recipientList: [{
-            recipientNo: data.userPhone,
+            recipientNo: '01062889557',
           }, 
-          // {
-          //   recipientNo: '01062889557',
-          // }
+          {
+            recipientNo: data.userPhone,
+          }
         ],
         },
       })
