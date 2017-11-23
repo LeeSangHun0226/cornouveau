@@ -39,6 +39,12 @@
   text-align: left;
 }
 
+@media (max-width: 500px) {
+  .Payment-renderField-label-wrapper {
+    width: 20%;
+  }
+}
+
 .Payment-renderField-label {
   width: 100%;
   font-size: 10px;
@@ -51,6 +57,12 @@
   margin-right: 40px;
 }
 
+@media (max-width: 500px) {
+  .Payment-renderField-input {
+    width: 70%;
+  }
+}
+
 .Payment-renderField-input-postcode {
   height: 80%;
   width: 80%;
@@ -60,11 +72,21 @@
   margin-right: 40px;
 }
 
+@media (max-width: 500px) {
+  .Payment-renderField-input-postcode {
+  }
+}
+
 .Payment-renderField-button-postcode {
   outline: none;
   margin-left: 10px;
 }
 
+@media (max-width: 500px) {
+  .Payment-renderField-button-postcode {
+    font-size: 1rem;
+  }
+}
 
 
 .Payment-info {

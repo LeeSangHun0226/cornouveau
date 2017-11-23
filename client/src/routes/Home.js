@@ -1,31 +1,32 @@
 import React from 'react';
 import { Image } from 'react-bootstrap';
 import Slider from 'react-slick';
+import exampleImg from '../images/1134.jpg';
 
 const homeData = [
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A1%9C%EC%8A%A4%EC%B2%BC%EC%84%B8%EB%B6%800.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/1.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A1%9D%ED%8E%A0%EC%84%B8%EB%B6%800.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A3%A8%ED%8C%A1%EC%84%B8%EB%B6%800.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/3.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A6%AC%EB%B6%80%EC%84%B8%EB%B6%800w.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/4.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EB%A6%AC%EC%BD%94%EC%84%B8%EB%B6%800w.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/5.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EC%95%84%EB%A5%B4%EC%84%B8%EB%B6%800w.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/6.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%EC%A0%9C%EB%84%A4%EC%8A%A4%EC%84%B8%EB%B6%800w.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/7.jpg',
   },
   {
-    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/2017-09-17+/%ED%86%A0%EB%AF%B8%EC%84%B8%EB%B6%800w.jpg',
+    image: 'https://s3.ap-northeast-2.amazonaws.com/cornouveau/0.main/8.jpg',
   },
 ];
 
@@ -35,7 +36,7 @@ const renderHome = () => (
       <Image
         src={data.image}
         responsive
-        // style={{ width: '90%' }}
+        style={{ width: '100%', maxWidth: '100%' }}
       />
     </div>
    ))
@@ -50,7 +51,7 @@ const Home = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 2000,
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
     responsive: [{

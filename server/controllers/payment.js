@@ -66,7 +66,7 @@ exports.savePayment = (req, res) => {
             recipientNo: '01038881645',
           },
           {
-            recipientNo: '01062889557',
+            recipientNo: '01088511465',
           },
           {
             recipientNo: data.userPhone,
@@ -89,7 +89,17 @@ exports.savePayment = (req, res) => {
         sendNo: '01062889557',
         recipientList: [{
           recipientNo: '01062889557',
-        }],
+        },
+        {
+          recipientNo: '01038881645',
+        },
+        {
+          recipientNo: '01088511465',
+        },
+        {
+          recipientNo: data.userPhone,
+        },
+        ],
       },
     })
     .then(() => {
@@ -110,7 +120,7 @@ exports.onePaymentGet = (req, res) => {
 };
 
 exports.changePayment = (req, res) => {
-  console.log(req.params, req.body)
+  
   const merchant_uid = req.params.uid;
   const paymentSituation = req.body.paymentSituation;
 

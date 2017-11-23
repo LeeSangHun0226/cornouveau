@@ -57,6 +57,7 @@ class GalleryComponent extends Component {
               });
             }}
             responsive
+            style={{ width: '100%', maxWidth: '100%' }}
           />
         </div>
       );
@@ -65,7 +66,7 @@ class GalleryComponent extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flow-root', background: '#E0E0E0' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', background: '#E0E0E0' }}>
         <div>
           {this.renderGallery()}
         </div>

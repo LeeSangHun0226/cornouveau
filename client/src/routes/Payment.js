@@ -196,7 +196,9 @@ class Payment extends Component {
               </span>)
           )
         }
-        <button className="Payment-renderField-button-postcode" type="button" onClick={() => this.openModal()}>우편번호</button>
+        <button className="Payment-renderField-button-postcode" type="button" onClick={() => this.openModal()}>
+          우편번호
+        </button>
       </div>
     </div>
   )

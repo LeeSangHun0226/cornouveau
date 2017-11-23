@@ -70,7 +70,6 @@ class Product extends Component {
               <select value={this.state.productSize} onChange={this.handleSizeChange}>
                 <option value="mini">MINI</option>
                 <option value="small">SMALL</option>
-                <option value="medium">MEDIUM</option>
               </select>
             </label>
             <div />
@@ -90,11 +89,14 @@ class Product extends Component {
               </select>
             </label>
             </form>
+            <div>
             <Image
               src={priceImg}
               responsive
-              style={{ margin: 'auto', width: '90%' }}
+              style={{ margin: 'auto', width: '100%', maxWidth: '100%', height: '20rem' }}
+              // style={{ display: 'flex', margin: 'auto', width: '90%', height: '90%', backgroundImage: `url(${priceImg})`, backgroundPosition: 'center', backgroundSize: '100%', backgroundRepeat: 'no-repeat' }}
             />
+            </div>
             <div />
             <Button
               style={{

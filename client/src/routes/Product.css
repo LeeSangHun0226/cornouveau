@@ -3,6 +3,12 @@
   /* flex: 1; */
 }
 
+@media (max-width: 500px) {
+  .product {
+    flex-direction: column-reverse;
+  } 
+}
+
 .product-imgBox {
   width: 50%;
   float: left;
@@ -16,6 +22,7 @@
 
 .product-payment-wrapper {
   width: 50%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   text-align: center;

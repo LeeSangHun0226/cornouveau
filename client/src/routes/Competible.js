@@ -67,7 +67,6 @@ class Competible extends Component {
               <select value={this.state.productSize} onChange={this.handleSizeChange}>
                 <option value="mini">MINI</option>
                 <option value="small">SMALL</option>
-                <option value="medium">MEDIUM</option>
               </select>
             </label>
             <div />
@@ -90,7 +89,7 @@ class Competible extends Component {
             <Image
               src={priceImg}
               responsive
-              style={{ margin: 'auto', width: '90%' }}
+              style={{ margin: 'auto', width: '100%', maxWidth: '100%', height: '20rem' }}
             />
             <div />
             <Button
@@ -149,18 +148,10 @@ class Competible extends Component {
 
   render() {
     return (
-      <div style={{
-      }}
-      >
-        <div style={{ display: 'flex', flex: 1 }}>
+      <div>
+        <div className="product">
           {this.renderProductBox()}
           {this.renderPaymentBox()}
-        </div>
-        <div>
-          <Image
-            src={'https://s3.ap-northeast-2.amazonaws.com/cornouveau/6.product/2017-10-11%EC%83%81%ED%92%88%EC%84%B8%EB%B6%80AS%EC%9D%B4%EB%AF%B8%EC%A7%80(%EB%AA%A8%EB%93%A0%EC%83%81%ED%92%88).jpg'}
-            responsive
-          />
         </div>
         {this.renderDetailBox()}
       </div>
