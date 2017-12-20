@@ -49,7 +49,7 @@ module.exports = function (app) {
 
   apiRoutes.use('/adoption', adoptionRoutes);
 
-  adoptionRoutes.get('/', AdoptionController.allAdoptoinGet);
+  adoptionRoutes.get('/', AdoptionController.allAdoptionGet);
   adoptionRoutes.get('/:id', AdoptionController.oneAdoptionGet);
   adoptionRoutes.post('/', AdoptionController.saveAdpotion);
 
