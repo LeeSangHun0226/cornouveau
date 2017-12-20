@@ -10,7 +10,7 @@ import Campaign from './routes/Campaign';
 import CampaignDetail from './routes/CampaignDetail';
 import Gallery from './routes/Gallery';
 import GalleryDetail from './routes/GalleryDetail';
-import Adoptions from './routes/Adoptions';
+import AdoptionDetail from './routes/AdoptionDetail';
 import Adoption from './routes/Adoption';
 import Products from './routes/Products';
 import Product from './routes/Product';
@@ -62,8 +62,8 @@ class App extends React.Component {
                   <Route exact path="/ourdog/dam" component={Dam} />
                   <Route path="/ourdog/dam/:damname" component={DamDetail} />
 
-                  <Route exact path="/adoptions" component={Adoptions} />
-                  <Route path="/adoption/:adoptionName" component={Adoption} />
+                  <Route exact path="/adoptions" component={Adoption} />
+                  <Route path="/adoption/:id" component={AdoptionDetail} />
 
                   <Route exact path="/products" component={Products} />
                   <Route path="/product/:productname" component={Product} />

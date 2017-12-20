@@ -7,6 +7,7 @@ const GalleryController = require('./controllers/gallery');
 const CompetibleController = require('./controllers/competible');
 const PaymentController = require('./controllers/payment');
 const CampaignController = require('./controllers/campaign');
+const AdoptionController = require('./controllers/adoption');
 
 module.exports = function (app) {
   const apiRoutes = express.Router();
@@ -17,6 +18,7 @@ module.exports = function (app) {
   const competibleRoutes = express.Router();
   const paymentRoutes = express.Router();
   const campaignRoutes = express.Router();
+  const adoptionRoutes = express.Router();
   /*------------------------------------------------------------------------------
     PRODUCT ROUTE
   ------------------------------------------------------------------------------*/
@@ -44,6 +46,12 @@ module.exports = function (app) {
   campaignRoutes.get('/', CampaignController.allCampaignGet);
   campaignRoutes.get('/:id', CampaignController.oneCampaignGet);
   campaignRoutes.post('/', CampaignController.saveCampaign);
+
+  apiRoutes.use('/adoption', adoptionRoutes);
+
+  adoptionRoutes.get('/', AdoptionController.allAdoptoinGet);
+  adoptionRoutes.get('/:id', AdoptionController.oneAdoptionGet);
+  adoptionRoutes.post('/', AdoptionController.saveAdpotion);
 
   apiRoutes.use('/sire', sireRoutes);
 

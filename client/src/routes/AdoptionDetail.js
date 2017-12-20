@@ -1,47 +1,44 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+// import priceImg from '../images/price.jpeg';
 import { fetchServerConfig } from '../config';
+// import './Product.css';
 
-class Adoption extends Component {
+class AdoptionDetail extends Component {
 
   state = {
     data: [],
   }
 
   componentDidMount() {
-    axios.get(`http://${fetchServerConfig.ip}:4000/api/adoption`)
+    const { id } = this.props.match.params;
+    axios.get(`http://${fetchServerConfig.ip}:4000/api/adoption/${id}`)
       .then((res) => {
         this.setState({
-          data: res.data,
+          data: res.data[0].subImage,
         });
       });
   }
 
-  renderAdoption = () => (
+  renderAdoptionDetail = () => (
     this.state.data.map(data => (
       <div>
-        <Link to={`/adoption/${data._id}`}>
-          <Image
-            src={data.titleImage}
-            responsive
-          />
-        </Link>
+        <Image
+          src={data}
+          responsive
+        />
       </div>
-    ))
+      ))
   )
 
   render() {
     return (
       <div style={{ background: '#E0E0E0' }}>
-        <div>
-          {this.renderAdoption()}
-        </div>
+        {this.renderAdoptionDetail()}
       </div>
     );
   }
 }
 
-
-export default Adoption;
+export default AdoptionDetail;
