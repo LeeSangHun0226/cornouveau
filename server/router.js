@@ -51,7 +51,7 @@ module.exports = function (app) {
 
   adoptionRoutes.get('/', AdoptionController.allAdoptionGet);
   adoptionRoutes.get('/:id', AdoptionController.oneAdoptionGet);
-  adoptionRoutes.post('/', AdoptionController.saveAdpotion);
+  adoptionRoutes.post('/', AdoptionController.saveAdoption);
 
   apiRoutes.use('/sire', sireRoutes);
 
